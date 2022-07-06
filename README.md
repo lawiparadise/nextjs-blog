@@ -24,5 +24,5 @@ npm run dev
 
 ### to install from git clone to mac, ubuntu
 ```shell
-
+npm install
 ```
