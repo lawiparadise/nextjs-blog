@@ -1,0 +1,18 @@
+/*특정 사용자 정의 태그(Layout)에 적용할 CSS모음집 */
+
+.container {
+    max-width: 36rem;
+    padding: 0 1rem;
+    margin: 3rem auto 6rem;
+    /*background-color: yellow;*/
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.backToHome {
+    margin: 3rem 0 0;
+}

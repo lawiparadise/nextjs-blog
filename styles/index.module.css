@@ -1,0 +1,10 @@
+.pointESC {
+    -webkit-text-fill-color: transparent;
+    color: coral;
+    background-image: url('/images/rainbow2.jpeg');
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 1em;
+    font-size: 1em;
+    font-weight: bold;
+}
