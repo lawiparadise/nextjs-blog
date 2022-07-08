@@ -1,7 +1,7 @@
 This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 
 ### nvm install
-[nvm 깃헙](https://github.com/nvm-sh/nvm)
+https://github.com/nvm-sh/nvm
 
 ### nvm version
 - window nvm --version : 1.1.9
@@ -11,6 +11,9 @@ This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 ### node, npm version
 - common node --version : v16.15.1
 - common npm --version : 8.11.0
+
+### start from Create a Next.js App
+https://nextjs.org/learn/basics/create-nextjs-app
 
 ### to install
 ```shell
