@@ -3,6 +3,8 @@ import Layout,{siteTitle} from "../components/layout";
 import utilStyles from '../styles/utils.module.css';
 import styles from '../styles/index.module.css'
 import {getSortedPostsData} from "../lib/posts";
+import Link from "next/link";
+import Date from "../components/date";
 
 export async function getStaticProps(){
     const allPostsData = getSortedPostsData();
@@ -13,11 +15,11 @@ export async function getStaticProps(){
     }
 }
 
-export default function Home({allPostsData}){
+export default function Home({allPostsData}){ // 여기에 인자로 allPostData에 들어 감
     return(
         <Layout home>
             <Head> {/*여기서 title 지정하면 Layout의 title 무시 */}
-                {/*<title>{siteTitle}</title>*/}
+                <title>{siteTitle}</title>
             </Head>
             <section className={utilStyles.headingMd}>
                 <p>while :&nbsp;
@@ -36,11 +38,18 @@ export default function Home({allPostsData}){
                 <ul className={utilStyles.list}>
                     {allPostsData.map(({ id, date, title }) => (
                         <li className={utilStyles.listItem} key={id}>
-                            {title}
-                            <br />
-                            {id}
-                            <br />
-                            {date}
+                            {/*{title}*/}
+                            {/*<br />*/}
+                            {/*{id}*/}
+                            {/*<br />*/}
+                            {/*{date}*/}
+                            <Link href={`/posts/${id}`}>
+                                <a>{title}</a>
+                            </Link>
+                            <br/>
+                            <small>
+                                <Date dateString={date}/>
+                            </small>
                         </li>
                     ))}
                 </ul>
