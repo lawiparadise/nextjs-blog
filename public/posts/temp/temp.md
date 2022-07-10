@@ -14,3 +14,5 @@ git push origin --delete <branch_name>
 ```shell
 git remote prune origin
 ```
+
+new branch 'preview_test' push to preview test
