@@ -17,11 +17,11 @@ date: '2021-07-01'
 ## webpack이란?
 
 여러개의 파일을 하나의 파일로 합쳐주는 번들러(bundler)
-![](/md-images/nextjs-blog/nextjs-blog-1/images/722c1b4e.png)
+
+![](.nextjs-blog-1_images/722c1b4e.png)
+
 [웹펙에 대해 - 1](todo)  
 
-
-![](.nextjs-blog-1_images/bfdd29ac.png)
 
 왜 합쳐야 되지?
 

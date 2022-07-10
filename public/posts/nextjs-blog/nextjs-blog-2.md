@@ -14,8 +14,8 @@ date: '2021-07-01'
 - 순수 React앱이었다면 pre-rendering은 없다
 
 ### pre none-pre 요약
-![](/md-images/nextjs-blog/nextjs-blog-1/images/942e2227.png)
-![](/md-images/nextjs-blog/nextjs-blog-1/images/4a02225c.png)
+![](.nextjs-blog-2_images/942e2227.png)
+![](.nextjs-blog-2_images/4a02225c.png)
 
 
 ## pre-rendering에는 2가지 방식이 있다

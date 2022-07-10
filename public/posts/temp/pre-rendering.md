@@ -9,5 +9,5 @@ Next.js has two forms of pre-rendering: **Static Generation** and **Server-side 
 
 Importantly, Next.js lets you **choose** which pre-rendering form to use for each page. You can create a "hybrid" Next.js app by using Static Generation for most pages and using Server-side Rendering for others.
 
-![](/posts/temp/.pre-rendering_images/657db813.png)
-![](/images/rainbow.jpeg)
+![](.pre-rendering_images/3d04c5ea.png)  
+![](.pre-rendering_images/15ed293a.png)  
