@@ -14,7 +14,7 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
         <div className={styles.container}>
             <Head>
                 <title>hihi</title> {/*여기서 타이틀 지정해도, 사용하는 곳에서 Head안에 title 재지정해주면 그걸로 적용 됨*/}
-                <link rel="icon" href="/favicon.ico"/>
+                <link rel="icon" href="/images/favicon.ico"/>
                 <meta
                     name="description"
                     content="Learn how to build a personal website using Next.js"
