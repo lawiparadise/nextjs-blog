@@ -25,4 +25,35 @@ dev는 npm run dev로 해줘야 한다.
 
 nvm start, stop, restart, test는 기본적으로 설정되어있는 애들이라 run 안 붙여도 됨  
 
-move md to public   
+___
+
+## webstrom에서 express 시작
+![](.node-dev-1_images/9c3ddc5c.png)  
+
+
+## 프로젝트 이전과 관련하여 기존 것과 새 것 비교
+
+### 생성된 폴더&파일
+/bin /bin/www  
+/node_module  
+/public /public/images /public/javascripts /public/stylesheets/style.css  
+/routes /routes/index.js /routes/users.js  
+/views /views/error.pug /views/index.pug /views/layout.pug  
+app.js  
+package-lock.json  
+package.json
+
+### 다른 부분
+/component  
+/config  
+/extensions  
+/log  
+/models  
+/src  
+/tesseract  
+.eslintrc  
+.prettierrc  
+
+### 내용이 같은걸 확인한 부분
+/bin/www  
+/app.js  약간 다르지만 거의 같음  
