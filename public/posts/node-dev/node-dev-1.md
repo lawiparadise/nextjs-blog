@@ -25,6 +25,13 @@ dev는 npm run dev로 해줘야 한다.
 
 nvm start, stop, restart, test는 기본적으로 설정되어있는 애들이라 run 안 붙여도 됨  
 
+## nodemon
+nodemon으로 코드 변경되는거 바로 적용 가능  
+```shell
+npm install -g nodemon
+nodemon
+```
+
 ___
 
 ## webstrom에서 express 시작
@@ -57,3 +64,15 @@ package.json
 ### 내용이 같은걸 확인한 부분
 /bin/www  
 /app.js  약간 다르지만 거의 같음  
+
+## PM2 사용하기
+```shell
+npm install -g pm2
+pm2 start www
+```
+
+## 포트 변경해서 npm start하기
+```shell
+SET PORT=5000 && npm start # window
+export PORT=5000 && npm start # ubuntu
+```

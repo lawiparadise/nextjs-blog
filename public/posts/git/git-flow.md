@@ -14,3 +14,9 @@ date: '2022-08-07'
 
 ![](.git-flow_images/bba8247c.png)
 
+## 순서
+1. main 브랜치 만들기
+2. develop 브랜치 만들기
+3. feature_enhancement 브랜치 만들고, 코드 짜고, feature_enhancement -> develop 브랜치에 PR날리기
+4. develop 브랜치에서 PR받고, develop -> release 브랜치로 넘기기
+5. QA진행하고, release -> main 브랜치로 버전명으로 PR보내고, git pull 받아서 서버에 적용하기
