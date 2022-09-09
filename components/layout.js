@@ -1,7 +1,7 @@
 import styles from './layout.module.css' // CSS import해주고
+import utilStyles from '../styles/utils.module.css'
 import Head from "next/head";
 import Image from "next/image";
-import utilStyles from '../styles/utils.module.css'
 import Link from "next/link";
 
 const name = 'devjune'
@@ -40,6 +40,11 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                             alt={name}
                         />
                         <h1 className={utilStyles.heading2Xl}>{name}</h1>
+                        <p className={utilStyles.headingMd}>while :&nbsp;
+                            <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>E</span>at&nbsp;
+                            <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>S</span>leep&nbsp;
+                            <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>C</span>ode&nbsp;
+                        </p>
                     </>
                 ) : (
                     <>
@@ -63,8 +68,15 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                     </>
                 )}
             </header>
-            <nav className={styles.nav}>nav입니당</nav>
-            <main>{children}</main>
+            <nav className={styles.nav_pc}>기본 내브</nav>
+            <nav className={styles.nav}>
+                <ul>
+                    <li>a</li>
+                    <li>b</li>
+                    <li>c</li>
+                </ul>
+            </nav>
+            <main className={styles.main}>{children}</main>
             {!home && (
                 <div className={styles.backToHome}>
                     <Link href="/">

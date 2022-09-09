@@ -3,7 +3,7 @@
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: -0.05rem;
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
 }
 
 .headingXl {
@@ -23,6 +23,7 @@
 .headingMd {
     font-size: 1.2rem;
     line-height: 1.5;
+    margin: 0.5rem 0;
 }
 
 .borderCircle {
@@ -49,4 +50,15 @@
 
 .lightText {
     color: #666;
+}
+
+.pointESC {
+    -webkit-text-fill-color: transparent;
+    color: coral;
+    background-image: url('/images/rainbow2.jpeg');
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 1em;
+    font-size: 1em;
+    font-weight: bold;
 }
