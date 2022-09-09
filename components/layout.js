@@ -63,6 +63,7 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                     </>
                 )}
             </header>
+            <nav className={styles.nav}>nav입니당</nav>
             <main>{children}</main>
             {!home && (
                 <div className={styles.backToHome}>
@@ -72,6 +73,7 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
 
                 </div>
             )}
+            <footer className={styles.footer}>footer입니당</footer>
 
         </div>
     )
