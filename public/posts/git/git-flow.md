@@ -21,4 +21,35 @@ date: '2022-08-07'
 4. develop 브랜치에서 PR받고, develop -> release 브랜치로 넘기기
 5. QA진행하고, release -> main 브랜치로 버전명으로 PR보내고, git pull 받아서 서버에 적용하기
 
+
+local
+```shell
+cd dev-folder
+git checkout -b feature_enhancement
+git add & commit
+git push origin feature_enhancement
+```
+(github PR) merged 1 commit into develop from feature_enhancement
+
+server-dev
+```shell
+cd dev-folder
+git checkout develop
+git pull
+git checkout release-qa
+git merge develop
+npm run dev
+git push origin release-qa
+```
+(github PR) merged 2 commits into main from release-qa
+
+server-deploy
+```shell
+cd deploy-folder
+git checkout main
+git pull
+pm2 restart 0
+```
+
 git-flow는 혼자 쓰기엔 좀 많이 번거롭다. 작은 프로젝트에선 이렇게 할 필요성이 있나?  
+
