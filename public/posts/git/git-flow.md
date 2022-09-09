@@ -21,6 +21,7 @@ date: '2022-08-07'
 4. develop 브랜치에서 PR받고, develop -> release 브랜치로 넘기기
 5. QA진행하고, release -> main 브랜치로 버전명으로 PR보내고, git pull 받아서 서버에 적용하기
 
+
 local
 ```shell
 cd dev-folder
@@ -49,3 +50,6 @@ git checkout main
 git pull
 pm2 restart 0
 ```
+
+git-flow는 혼자 쓰기엔 좀 많이 번거롭다. 작은 프로젝트에선 이렇게 할 필요성이 있나?  
+
