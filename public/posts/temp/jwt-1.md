@@ -20,3 +20,9 @@ localStorage에 저장하면 js를 사용해야 req에 jwt가 담기기 때문�
 
 cookie에 저장하는 경우 httpOnly 옵션키면 js로 쿠키 접근 불가  
 근데 
+
+## jwt를 공부해보자
+- secretKey가 있어야 똑같은 jwt를 만들어 낼 수 있음
+- secretKey가 다르면, 같은 payload라도 jwt가 달라짐
+- 따라서, 해커가 secretKey를 모른다면 payload만을 바꿔서 다른 사용자의 정보를 알아낼 수 있는 jwt를 만들 수 없음
+- 
