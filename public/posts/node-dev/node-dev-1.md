@@ -76,3 +76,11 @@ pm2 start www
 SET PORT=5000 && npm start # window
 export PORT=5000 && npm start # ubuntu
 ```
+
+## npm install 에러 발생
+- 설치하려는 패키지a:1.0.0이랑, 패키지b:2.0.0이 있는데, 이 패키지b에서 패키지a:0.0.5를 사용하면 문제 됨
+- npm7부터 이거 에러로 잡음
+- --force : package-lock.json에 몇가지의 다른 의존 버전들을 추가한다?
+- --legacy-peer-deps : peerDependency가 맞지 않아도 일단 설치한다?
+- 여튼 force로 하는게 맞긴 한듯한듯한 느낌
+- 
