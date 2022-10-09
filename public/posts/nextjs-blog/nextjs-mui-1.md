@@ -5,6 +5,11 @@ date: '2022-09-28'
 
 # nextjs에서 mui를 적용해보자
 
+## 설치하기
+```shell
+npm install @mui/material @emotion/react @emotion/styled
+```
+
 ## dashboard 템플릿을 적용해보자
 - https://mui.com/store/items/materio-mui-react-nextjs-admin-template/ 
 - 요기 materio 테마가 맘에 듬
