@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
+    "target": "es5", // 사용할 ECMAScript 버전
+    "lib": ["dom", "dom.iterable", "esnext"], // 컴파일에 포함될 라이브러리 목록
+    "allowJs": true, // js파일 컴파일 허용 여부
+    "skipLibCheck": true, // declaration files의 type checking을 스킵? library의 ts검사 스킵 여부?
+    "strict": true, // 모든 엄격한 타입-체킹 옵션 활성화 여부
+    "forceConsistentCasingInFileNames": true, // 같은 파일에 대한 일관되지 않은 참조를 허용하지 않을지?
+    "noEmit": true, // 결과 파일 안내보낼지
+    "esModuleInterop": true, // 모든 imports에 대한 namespace 생성을 통해 CommonJS와 ES Modules 간의 상호 운용성이 생기게할 지 여부?
+    "module": "esnext", // 컴파일에 포함될 라이브러리 파일 목록
+    "moduleResolution": "node", // 모듈 해석 방법 설정: 'node' (Node.js) 혹은 'classic' (TypeScript pre-1.6)
+    "resolveJsonModule": true, // json파일 잘 가져오기?
+    "isolatedModules": true, // 각 파일을 분리된 모듈로 트랜스파일
+    "jsx": "preserve", // JSX 코드 생성 설정: 'preserve', 'react-native', 혹은 'react'
+    "incremental": true // 증분 컴파일 설정 여부
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

@@ -12,4 +12,5 @@ date: '2022-10-08'
 
 
 ## ts와 tsx의 차이
-- 
+- ts는 그냥 typescript파일이고
+- tsx는 react component로써 컴포넌트 구성할 때 사용 함

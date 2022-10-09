@@ -6,8 +6,6 @@ import {getSortedPostsData} from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
 
-import Button from '@mui/material/Button'
-
 export async function getStaticProps() {
     const allPostsData = getSortedPostsData();
     return {
@@ -27,8 +25,6 @@ export default function Home({allPostsData}) { // 여기에 인자로 allPostDat
 
             <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
                 <h2 className={utilStyles.headingLg}>Latest</h2>
-                <Button variant="contained">hi</Button>
-
                 <ul className={utilStyles.list}>
                     {allPostsData.map(({id, date, title}) => (
                         <li className={utilStyles.listItem} key={id}>
