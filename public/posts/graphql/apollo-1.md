@@ -16,6 +16,11 @@ date: '2022-10-05'
 - query를 통해 받은 데이터 자동 캐싱
 - local state 관리
 
+## apollo client 사용하기
+```shell
+npm i @apollo/client
+```
+
 ## apollo server 사용하기
 [간단히 apollo server 구축](https://velog.io/@ryong9rrr/Apollo-server-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0)
 

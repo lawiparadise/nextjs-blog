@@ -10,11 +10,16 @@ date: '2022-10-07'
 ## 사용하기
 https://www.youtube.com/watch?v=PWuvaxa78kw
 ```shell
+npx create-react-app aa
 npm i
 npx prisma init
 npx prisma migrate dev
 npx prisma studio
 npm run dev
+```
+- 만약, ```prisma @prisma/client```가 안생기면 직접 만들어줘
+```shell
+npm install prisma @prisma/client
 ```
 
 - init하면 prisma 폴더랑, .env파일 생김
