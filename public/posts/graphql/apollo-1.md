@@ -83,3 +83,10 @@ npm run dev
 ## apollo server의 인자 2개
 - typeDef : graphql 명세에서 사용도리 데이터, 요청의 타입 지정
 - resolver : 요청에 따라 데이터를 반환, 입력, 수정, 삭제
+
+## apollo vs urql
+- apollo 장점이 많은 아이지만,
+- react말고 다른 FE 프레임워크 지원 부족, 라지 번들 사이즈
+- urql은 가볍고, 커스터마이징 좋고 등등ㅇ
+
+![](.apollo-1_images/d834f20c.png)
