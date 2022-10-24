@@ -68,14 +68,6 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                     </>
                 )}
             </header>
-            <nav className={styles.nav_pc}>기본 내브</nav>
-            <nav className={styles.nav}>
-                <ul>
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
-                </ul>
-            </nav>
             <main className={styles.main}>{children}</main>
             {!home && (
                 <div className={styles.backToHome}>

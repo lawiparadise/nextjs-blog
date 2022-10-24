@@ -97,7 +97,7 @@ className을 쓰면 class이름을 랜덤으로 지정해 줌
 
 ### Global Styles
 
-_app.js
+_app.tsx
 
 ```js
 import '../styles/global.css'

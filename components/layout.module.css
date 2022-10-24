@@ -14,17 +14,6 @@
     align-items: center;
 }
 
-.nav_pc {
-    display: none;
-    margin: 0 auto;
-    max-width: 48rem;
-    background-color: purple;
-}
-
-.nav {
-    background-color: purple;
-    position: absolute;
-}
 
 .main {
     margin: 0 auto;
