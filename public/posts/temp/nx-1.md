@@ -49,6 +49,20 @@ Workspace name (e.g., org name)     myorg
 What to create in the new workspace react
 Application name                    todos
 Default stylesheet format           CSS
+```
+```shell
 npx nx serve todos
+npx nx run chat:serve
 ```
 
+## yarn nx graph
+- `yarn nx graph`
+
+## 공통 요소 가져오기
+- project.json에 assets에 경로 넣어서 갔따 씀
+
+## 새 application 만들기
+```shell
+npm install --save-dev @nrwl/next
+nx g @nrwl/next:app my-new-app
+```

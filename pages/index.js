@@ -16,8 +16,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({allPostsData}) { // 여기에 인자로 allPostData에 들어 감
-    const {classes} = useStyles()
-
     return (
         <Layout home>
             <Head> {/*여기서 title 지정하면 Layout의 title 무시 */}

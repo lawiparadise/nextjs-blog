@@ -15,3 +15,17 @@ date: '2022-10-03'
 ## 왜 rest api 안쓰고 gql 씀?
 - 내가 원하는 데이터만 쏙쏙들이 뽑아 쓰고 싶음(overfetching안하고 데이터에 8가지 중 3가지만)
 - 두 번에 걸쳐서 데이터를 받아오는게 아니라, 한 번에 받아오고 싶음(underfetching)
+
+## codegen
+- graphql schema, operations를 자동으로 생성해 줌
+- `yarn graphql-codegen`
+
+## .graphqlrc
+- 여기서 codegen이 어떻게 생길지 정의 해 줌
+
+## 구조
+- mysql은 database 안에 바로 table
+- graphql은 database 안에 schema 안에 table
+
+## 자동 코드 생성 codegen
+- `yarn graphql-codegen`
