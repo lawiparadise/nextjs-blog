@@ -44,7 +44,7 @@ ___
 /bin /bin/www  
 /node_module  
 /public /public/images /public/javascripts /public/stylesheets/style.css  
-/routes /routes/index.js /routes/users.js  
+/routes /routes/index.tsx /routes/users.js  
 /views /views/error.pug /views/index.pug /views/layout.pug  
 app.js  
 package-lock.json  

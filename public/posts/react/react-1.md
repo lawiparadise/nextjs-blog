@@ -13,7 +13,7 @@ npx create-react-app blog
 ```
 
 ## 구조
-- index.js : 여기서 ReactDom의 render를 실행 함. html파일 안의 id가 root인 애한테 렌더링 해 줌
+- index.tsx : 여기서 ReactDom의 render를 실행 함. html파일 안의 id가 root인 애한테 렌더링 해 줌
 - App.js : 여기에 원하는걸 그리고, 이걸 index.js에 넣어 줌
 - index.html : html파일임
 
