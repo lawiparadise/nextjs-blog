@@ -15,10 +15,10 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
             <Head>
                 <title>hihi</title> {/*여기서 타이틀 지정해도, 사용하는 곳에서 Head안에 title 재지정해주면 그걸로 적용 됨*/}
                 <link rel="icon" href="/images/favicon.ico"/>
-                <metaA
-                    name="description"
-                    content="Learn how to build a personal website using Next.js"
-                />
+                {/*<metaA*/}
+                {/*    name="description"*/}
+                {/*    content="Learn how to build a personal website using Next.js"*/}
+                {/*/>*/}
                 <meta
                     property="og:image"
                     content={`https://og-image.vercel.app/${encodeURI(
