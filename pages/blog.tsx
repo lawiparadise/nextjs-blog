@@ -31,6 +31,7 @@ interface BlogProps {
 export const getStaticProps: GetStaticProps<BlogProps> = async (context) => {
   // const folderNames = getFolderNames()
   const dictFileNamesFromFolder = getDictFileNamesFromFolder()
+  console.log(typeof dictFileNamesFromFolder)
   return {
     props: {
       // hostmy: 'hihi',
@@ -48,6 +49,7 @@ const Blog: NextPage<BlogProps> = (props) => {
   // console.log('folderNames', props.folderNames)
   // console.log('dictFileNamesFromFolder', props.dictFileNamesFromFolder)
   const dictFileNames = props.dictFileNamesFromFolder
+  // console.log(typeof(dictFileNames['css']))
 
   return (
     <AppShell
@@ -65,6 +67,7 @@ const Blog: NextPage<BlogProps> = (props) => {
                   label={itemP}
                 >
                   {
+                    // todo ts type error 해결해야 함. dictFileNamesFromFolder
                     dictFileNames[itemP].map((itemC, indexC) => (
                       <NavLink
                         px="xl"
