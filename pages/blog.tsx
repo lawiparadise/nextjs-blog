@@ -92,7 +92,7 @@ const Blog: NextPage<BlogProps> = (props) => {
         <Header height={60} px="md">
           <Group position="apart" style={{ height: '100%' }}>
             <Link href="/" passHref>
-              <Text component="a" size="xl" weight={1000} mr="1rem">devlog</Text>
+              <Text sx={{fontFamily:"Consolas"}} component="a" size="xl" weight={1000} mr="1rem">devlog</Text>
             </Link>
             <Group position="apart">
               <ActionIcon variant="default" onClick={() => toggleColorScheme()} size="md">
@@ -100,7 +100,7 @@ const Blog: NextPage<BlogProps> = (props) => {
                   <IconMoonStars size={16} />}
               </ActionIcon>
               <Group position="apart">
-                <Text>june</Text>
+                <Text sx={{fontFamily:"Consolas"}} >june</Text>
                 <Avatar color="cyan" radius="xl" size="md">j</Avatar>
               </Group>
             </Group>

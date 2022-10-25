@@ -1,7 +1,8 @@
 import {useState} from 'react'
 import {AppProps} from 'next/app';
 import '../styles/global.css'
-import DefaultLayout from "../src/components/layouts/DefaultLayout";
+import {CustomFonts} from "../lib/custom-fonts";
+
 import {
     MantineProvider,
     ColorSchemeProvider,
@@ -22,10 +23,11 @@ export default function App({Component, pageProps}: AppProps) { //모든 페이�
                 withGlobalStyles
                 withNormalizeCSS
                 theme={{
-                    fontFamily: 'Consolas',
+                    fontFamily: 'D2Coding, Consolas, monospace',
                     colorScheme
                 }}
             >
+                <CustomFonts/>
                 <Component {...pageProps} />
             </MantineProvider>
         </ColorSchemeProvider>

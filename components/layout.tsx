@@ -39,8 +39,8 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                             width={144}
                             alt={name}
                         />
-                        <h1 className={utilStyles.heading2Xl}>{name}</h1>
-                        <p className={utilStyles.headingMd}>while :&nbsp;
+                        <h1 style={{fontFamily:"Consolas"}} className={utilStyles.heading2Xl}>{name}</h1>
+                        <p style={{fontFamily:"Consolas"}} className={utilStyles.headingMd}>while :&nbsp;
                             <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>E</span>at&nbsp;
                             <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>S</span>leep&nbsp;
                             <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>C</span>ode&nbsp;
@@ -62,7 +62,7 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                         </Link>
                         <h2 className={utilStyles.headingLg}>
                             <Link href="/">
-                                <a className={utilStyles.colorInherit}>{name}</a>
+                                <a style={{fontFamily:"Consolas"}} className={utilStyles.colorInherit}>{name}</a>
                             </Link>
                         </h2>
                     </>
