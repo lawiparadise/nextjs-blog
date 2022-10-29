@@ -3,6 +3,18 @@ import utilStyles from '../styles/utils.module.css'
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import {
+    AppShell,
+    Navbar,
+    Header,
+    Group,
+    Text,
+    Avatar,
+    ActionIcon,
+    NavLink,
+    ScrollArea,
+    useMantineColorScheme
+} from "@mantine/core";
 
 const name = 'devjune'
 export const siteTitle = 'devlog'
@@ -39,30 +51,28 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
                             width={144}
                             alt={name}
                         />
-                        <h1 style={{fontFamily:"Consolas"}} className={utilStyles.heading2Xl}>{name}</h1>
-                        <p style={{fontFamily:"Consolas"}} className={utilStyles.headingMd}>while :&nbsp;
-                            <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>E</span>at&nbsp;
-                            <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>S</span>leep&nbsp;
-                            <span className={utilStyles.pointESC} style={{"backgroundSize":"40px"}}>C</span>ode&nbsp;
+                        <h1 style={{fontFamily: "Consolas"}} className={utilStyles.heading2Xl}>{name}</h1>
+                        <p style={{fontFamily: "Consolas"}} className={utilStyles.headingMd}>while :&nbsp;
+                            <span className={utilStyles.pointESC} style={{"backgroundSize": "40px"}}>E</span>at&nbsp;
+                            <span className={utilStyles.pointESC} style={{"backgroundSize": "40px"}}>S</span>leep&nbsp;
+                            <span className={utilStyles.pointESC} style={{"backgroundSize": "40px"}}>C</span>ode&nbsp;
                         </p>
                     </>
                 ) : (
                     <>
                         <Link href="/">
-                            <a>
-                                <Image
-                                    priority
-                                    src="/images/coding_cat.gif"
-                                    className={utilStyles.borderCircle}
-                                    height={108}
-                                    width={108}
-                                    alt={name}
-                                />
-                            </a>
+                            <Image
+                                priority
+                                src="/images/coding_cat.gif"
+                                className={utilStyles.borderCircle}
+                                height={108}
+                                width={108}
+                                alt={name}
+                            />
                         </Link>
                         <h2 className={utilStyles.headingLg}>
                             <Link href="/">
-                                <a style={{fontFamily:"Consolas"}} className={utilStyles.colorInherit}>{name}</a>
+                                <Text style={{fontFamily: "Consolas"}} className={utilStyles.colorInherit}>{name}</Text>
                             </Link>
                         </h2>
                     </>
@@ -72,7 +82,7 @@ export default function Layout({children, home}) { // Layout태그 만들어 줌
             {!home && (
                 <div className={styles.backToHome}>
                     <Link href="/">
-                        <a>← Back to home</a>
+                        <Text>← Back to home</Text>
                     </Link>
 
                 </div>

@@ -33,7 +33,7 @@ export default function Home({allPostsData}) { // 여기에 인자로 allPostDat
                             {/*<br />*/}
                             {/*{date}*/}
                             <Link href={`/posts/${id}`}>
-                                <a>{title}</a>
+                                {title}
                             </Link>
                             <br/>
                             <small>

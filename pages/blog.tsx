@@ -92,7 +92,7 @@ const Blog: NextPage<BlogProps> = (props) => {
         <Header height={60} px="md">
           <Group position="apart" style={{ height: '100%' }}>
             <Link href="/" passHref>
-              <Text sx={{fontFamily:"Consolas"}} component="a" size="xl" weight={1000} mr="1rem">devlog</Text>
+              <Text sx={{fontFamily:"Consolas"}} size="xl" weight={1000} mr="1rem">devlog</Text>
             </Link>
             <Group position="apart">
               <ActionIcon variant="default" onClick={() => toggleColorScheme()} size="md">

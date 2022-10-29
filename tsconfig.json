@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5", // 사용할 ECMAScript 버전
-    "lib": ["dom", "dom.iterable", "esnext"], // 컴파일에 포함될 라이브러리 목록
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // 컴파일에 포함될 라이브러리 목록
     "allowJs": true, // js파일 컴파일 허용 여부
     "skipLibCheck": true, // declaration files의 type checking을 스킵? library의 ts검사 스킵 여부?
     "strict": false, // 모든 엄격한 타입-체킹 옵션 활성화 여부
@@ -14,7 +18,20 @@
     "isolatedModules": true, // 각 파일을 분리된 모듈로 트랜스파일
     "jsx": "preserve", // JSX 코드 생성 설정: 'preserve', 'react-native', 혹은 'react'
     "incremental": true // 증분 컴파일 설정 여부
+    ,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
