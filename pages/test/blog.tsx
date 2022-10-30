@@ -14,7 +14,7 @@ import {
 import Link from 'next/link'
 import { IconSun, IconMoonStars } from '@tabler/icons'
 import { GetStaticProps, NextPage } from "next";
-import { getDictFileNamesFromFolder, getFolderNames, getObj } from '../lib/posts'
+import { getDictFileNamesFromFolder, getFolderNames, getObj } from '../../lib/posts'
 
 // const data = [
 //   { label: 'a' },
@@ -91,7 +91,7 @@ const Blog: NextPage<BlogProps> = (props) => {
       header={
         <Header height={60} px="md">
           <Group position="apart" style={{ height: '100%' }}>
-            <Link href="/" passHref>
+            <Link href="/pages" passHref>
               <Text sx={{fontFamily:"Consolas"}} size="xl" weight={1000} mr="1rem">devlog</Text>
             </Link>
             <Group position="apart">

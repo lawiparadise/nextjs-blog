@@ -47,7 +47,7 @@ function Demo() {
 
     return (
         <>
-            <Link href='/' passHref>
+            <Link href='/pages' passHref>
                 <Button component='a'>hi button</Button>
             </Link>
             <div className={classes.wrapper}>

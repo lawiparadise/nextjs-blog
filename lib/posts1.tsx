@@ -4,8 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import {remark} from "remark";
-import html from 'remark-html'
-
+import html from 'remark-html';
 // const postsDirectory = path.join(process.cwd(), 'public');
 // const postsDirectory = path.join(process.cwd(), 'posts');
 const postsDirectory = path.join(process.cwd(), 'public') + '/posts';
@@ -130,9 +129,10 @@ export function getObj() {
     return obj
 }
 
-export function getDictFileNamesFromFolder() {
+// async 붙여서 바꺼 봄.. 잘 안됨
+export async function getDictFileNamesFromFolder() {
     var dictObj = {}
-    const fileFolderNames = fs.readdirSync(postsDirectory)
+    const fileFolderNames = await fs.promises.readdir(postsDirectory) // await 붙여서 바꺼 봄..
     let folderNames = fileFolderNames.reduce((res, cur) => {
         if (cur.substring
         (cur.length - 3, cur.length) !== '.md') res.push(cur)
@@ -141,7 +141,7 @@ export function getDictFileNamesFromFolder() {
 
     for (let i = 0; i < folderNames.length; i++) {
         // console.log(i)
-        let fileNamesInFolder = fs.readdirSync(postsDirectory + '/' + folderNames[i])
+        let fileNamesInFolder = await fs.promises.readdir(postsDirectory + '/' + folderNames[i])
         // console.log(fileNamesInFolder)
         var fileNames = []
         for (let j = 0; j < fileNamesInFolder.length; j++) {
