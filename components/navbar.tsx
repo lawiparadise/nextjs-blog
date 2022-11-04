@@ -43,7 +43,9 @@ export default function MyNavbar({dictFileNamesFromFolder}){
     const folderName = asPath.split('/')[2]
     const fileName = asPath.split('/')[3]
     // console.log(folderName, fileName)
-    const p = Object.keys(dictFileNames).indexOf(folderName)
+    const t = Object.keys(dictFileNames)
+    // console.log(t)
+    const p = t.indexOf(folderName)
     // console.log(p)
     const c = dictFileNames[folderName].indexOf(fileName)
     // console.log(c)
