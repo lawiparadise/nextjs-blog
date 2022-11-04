@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router';
 import {
   AppShell,
   Navbar,
@@ -30,11 +31,24 @@ import { IconSun, IconMoonStars } from '@tabler/icons'
 
 // const MyNavbar: NextPage<BlogProps> = (props) => {
 export default function MyNavbar({dictFileNamesFromFolder}){
-  // todo url 받아와서 state변경하기
-
-  const [activeP, setActiveP] = useState(0);
-  const [activeC, setActiveC] = useState(0);
   const dictFileNames = dictFileNamesFromFolder
+  const {p, c} = getFileNum(dictFileNames)
+
+  const [activeP, setActiveP] = useState(p);
+  const [activeC, setActiveC] = useState(c);
+
+  function getFileNum(dictFileNames) {
+    const { asPath, pathname } = useRouter();
+    // console.log(asPath, pathname)
+    const folderName = asPath.split('/')[2]
+    const fileName = asPath.split('/')[3]
+    // console.log(folderName, fileName)
+    const p = Object.keys(dictFileNames).indexOf(folderName)
+    // console.log(p)
+    const c = dictFileNames[folderName].indexOf(fileName)
+    // console.log(c)
+    return {p, c}
+  }
 
   return (
     <Navbar width={{ base: 250 }} p="md">
