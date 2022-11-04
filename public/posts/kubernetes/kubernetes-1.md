@@ -97,3 +97,36 @@ sudo apt-mark hold kubelet kubeadm kubectl
   - 로드밸런서 : 외부에서 로드밸런서에 접근하고, 로드밸런서가 노드에 트래픽 분산해줌. 별도의 외부에서 접속 가능한 ip 지원 플러그인이 있어야 함
     (GCP 등은 이미 제공 해줌)
     - 외부 시스템 노출 용
+
+## 쿠버네티스 볼륨
+- emptyDir : 파드 안에 존재. 컨테이너들끼리 데이터를 공유하기 위해서 사용. 하지만 파드 삭제시 삭제 됨.
+- hostPath : 노드 안에 존재. 노드에 있는 데이터를 파드에서 쓰기 위한 용도. 하지만 파드 재생성시 노드2에 생성되면 노드1의 볼륨접근 불가.
+- pvc/pv : 노드 안에 존재. 파드가 계속 데이터를 사용하기 위함.
+
+## 쿠버네티스 ConfigMap, Secret
+- env(Literal) : 문자로 환경변수 주입
+- env(file) : ConfigMpa의 데이터 바뀌어도 pod의 환경변수는 안 바뀜
+- volume mount(file) : ConfigMpa의 데이터 바뀌면 pod의 환경변수는 바뀜
+
+## 쿠버네티스 resourceQuota, limit range
+- namespace의 자원한계를 설정하는 오브젝트
+- limit range는 각 pod마다 namespace에 들어올 수 있는지 자원 체크
+- 대충 rq는 namespace의 총량 설정, limit range는 namespace에 pod가 들어올 때 각 pod의 량 설정
+- pod만들기 전에 resourceQuota먼저 만들어야 함. pod먼저 만들고 resourceQuota만들면 적용 안 됨
+
+## 쿠버네티스 컨트롤러
+- 서비스 관리하고 운영하는데 도움 줌
+- auto healing : pod나 node죽으면 다른 노드에 pod만들어줘
+- auto scaling : pod리소스가 리밋되면 파드 또 만들어줘
+- update : pod기능 업데이트 간편
+- job : 간단 작업해야할 때 pod만들고 작업하고 pod종료함.
+
+## 쿠버네티스 replication
+- template : 기존 pod죽으면 여기에 올려진 pod로 재생성해줌
+- replicas : 이거 숫자만큼 pod생성
+
+## 쿠버네티스 deployment
+- recrate : 서비스 없앨 때 donwtime 발생. 잠깐 멈춰도 되는 서비스는 해도 됨
+- rolling update : v2파드 만들고, v1,v2같이 돌아가다가 v1을 없애준다. v2 또 만들고 v1삭제. 배포 중 추가 공간필요하지만 downtime없음
+- blue/green : 레플리카셋으로도 가능. 파드v2만들고 서비스의 셀렉터를 변환함. 장점은 v2가 문제 시, 셀렉터만 v1으로 돌리면 바로 v1으로 작동가능
+- canary : 새로운 라벨을 기존 파드에 달아주고, 새로운 파드도 같은 라벨 달아주고, 기존 v1파드 2개, 새로운 v2파드1개 돌리다가 문제 생기면 v2파드 없애고, 문제 없으면 v2유지하면서, 서비스도 2개를 만들어. ingress controller. 특정 타켓팅을 대상으로만 테스팅도 가능
