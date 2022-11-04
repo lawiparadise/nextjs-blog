@@ -29,28 +29,29 @@ import { IconSun, IconMoonStars } from '@tabler/icons'
 //   }
 // }
 
-// const MyNavbar: NextPage<BlogProps> = (props) => {
-export default function MyNavbar({dictFileNamesFromFolder}){
-  const dictFileNames = dictFileNamesFromFolder
-  const {p, c} = getFileNum(dictFileNames)
-
-  const [activeP, setActiveP] = useState(p);
-  const [activeC, setActiveC] = useState(c);
-
-  function getFileNum(dictFileNames) {
-    const { asPath, pathname } = useRouter();
-    // console.log(asPath, pathname)
+function getFileNum(dictFileNames) {
+  const { asPath, pathname } = useRouter();
+  // console.log('asPath', asPath)
+  let p, c = 0
+  if (asPath.split('/')[1] == 'posts') { // posts로 접근했을 때만 가능하게하기
     const folderName = asPath.split('/')[2]
     const fileName = asPath.split('/')[3]
     // console.log(folderName, fileName)
-    const t = Object.keys(dictFileNames)
-    // console.log(t)
-    const p = t.indexOf(folderName)
+    p = Object.keys(dictFileNames).indexOf(folderName)
     // console.log(p)
-    const c = dictFileNames[folderName].indexOf(fileName)
+    c = dictFileNames[folderName].indexOf(fileName)
     // console.log(c)
-    return {p, c}
   }
+  return { p, c }
+}
+
+// const MyNavbar: NextPage<BlogProps> = (props) => {
+export default function MyNavbar({ dictFileNamesFromFolder }) {
+  const dictFileNames = dictFileNamesFromFolder
+  const { p, c } = getFileNum(dictFileNames)
+
+  const [activeP, setActiveP] = useState(p);
+  const [activeC, setActiveC] = useState(c);
 
   return (
     <Navbar width={{ base: 250 }} p="md">
