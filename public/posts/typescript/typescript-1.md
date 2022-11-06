@@ -19,6 +19,3 @@ date: '2022-10-08'
 - Type error: Element implicitly has an 'any' type because expression of type 'string' can't be used to index type 'Object'.
   - ts는 지정한 타입의 키를 인덱스로 쓰라고 한다
   - https://devbirdfeet.tistory.com/211
-
-- TypeError: Cannot read properties of undefined (reading 'indexOf')
-  - 

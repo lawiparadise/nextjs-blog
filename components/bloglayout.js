@@ -9,10 +9,11 @@ import {
     Navbar,
     NavLink,
     ScrollArea,
+    Autocomplete,
     Text, useMantineColorScheme
 } from "@mantine/core";
 import Link from "next/link";
-import {IconMoonStars, IconSun} from "@tabler/icons";
+import {IconMoonStars, IconSun, IconSearch} from "@tabler/icons";
 import MyNavbar from "./navbar";
 
 // export async function getStaticProps() {
@@ -72,6 +73,13 @@ export default function BlogLayout({dictFileNamesFromFolder, children}) {
                                   mr="1rem">devlog</Text>
                         </Link>
                         <Group position="apart">
+                            <Autocomplete
+                                style={{width:100}}
+                                size="xs"
+                                placeholder="search"
+                                icon={<IconSearch size={16} stroke={1.5}/>}
+                                data={['React', 'Angular', 'Vue', 'Next.js', 'Riot.js', 'Svelte', 'Blitz.js']}
+                            />
                             <ActionIcon variant="default"
                                         onClick={() => toggleColorScheme()} size="md">
                                 {colorScheme === 'dark' ? <IconSun size={16} /> :

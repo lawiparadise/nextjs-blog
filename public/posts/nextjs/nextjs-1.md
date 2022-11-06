@@ -36,3 +36,6 @@ date: '2022-10-05'
 - Error: You must `await server.start()` before calling `server.createHandler()`
 - Warning: Failed prop type: The prop `rows` of `ForwardRef(TextField)` is deprecated. Use `minRows` instead
 - 버전 문제인지 아닌지 잘 분간도 안되는 문제들..
+
+## 데이터를 하나의 page가 아닌 전역에서 사용하기
+- https://github.com/vercel/next.js/discussions/10949
