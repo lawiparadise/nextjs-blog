@@ -7,7 +7,6 @@ import {
   ColorSchemeProvider,
   ColorScheme,
 } from '@mantine/core';
-import BlogLayout from "../components/bloglayout";
 import {getDictFileNamesFromFolder} from "../lib/posts";
 
 export default function App({ Component, pageProps }: AppProps) { //모든 페이지에 적용되는
@@ -21,7 +20,6 @@ export default function App({ Component, pageProps }: AppProps) { //모든 페�
   // console.log("dictFileNamesFromFolder", dictFileNamesFromFolder)
 
   return (
-    // <BlogLayout dictFileNamesFromFolder={dictFileNamesFromFolder}>
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
@@ -38,7 +36,6 @@ export default function App({ Component, pageProps }: AppProps) { //모든 페�
           <Component {...pageProps} />
         </MantineProvider>
       </ColorSchemeProvider>
-    // </BlogLayout>
   )
   // mui
   // <DefaultLayout>

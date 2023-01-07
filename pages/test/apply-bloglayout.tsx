@@ -1,5 +1,5 @@
 import { getDictFileNamesFromFolder } from "../../lib/posts";
-import BlogLayout from "../../components/bloglayout";
+import DefaultLayout from "../../components/Layout/DefaultLayout";
 
 export async function getStaticProps() {
   const dictFileNamesFromFolder = getDictFileNamesFromFolder();
@@ -12,8 +12,8 @@ export async function getStaticProps() {
 
 export default function ApplyBloglayout({dictFileNamesFromFolder}) {
   return (
-    <BlogLayout dictFileNamesFromFolder={dictFileNamesFromFolder}>
+    <DefaultLayout dictFileNamesFromFolder={dictFileNamesFromFolder}>
       <div>about</div>
-    </BlogLayout>
+    </DefaultLayout>
   )
 }
