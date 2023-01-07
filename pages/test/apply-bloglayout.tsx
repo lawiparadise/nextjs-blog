@@ -1,5 +1,5 @@
 import { getDictFileNamesFromFolder } from "../../lib/posts";
-import DefaultLayout from "../../components/Layout/DefaultLayout";
+import {DefaultLayout} from "../../components";
 
 export async function getStaticProps() {
   const dictFileNamesFromFolder = getDictFileNamesFromFolder();
