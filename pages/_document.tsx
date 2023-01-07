@@ -6,3 +6,5 @@ const getInitialProps = createGetInitialProps()
 export default class _Document extends NextDocument {
     static getInitialProps = getInitialProps
 }
+
+
