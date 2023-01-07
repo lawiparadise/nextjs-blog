@@ -15,10 +15,12 @@ import {
     ScrollArea,
     useMantineColorScheme
 } from "@mantine/core";
+import {FC} from "react";
 
 const name = 'devjune'
 export const siteTitle = 'devlog'
 
+// export const MainLayout:FC = (props:{home}) => { // ㅇㅣ걸로 해야 barrel import 가능
 export default function MainLayout({children, home}) { // Layout태그 만들어 줌
     // return <div className={styles.container}>{children}</div>
 

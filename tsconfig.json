@@ -17,8 +17,7 @@
     "resolveJsonModule": true, // json파일 잘 가져오기?
     "isolatedModules": true, // 각 파일을 분리된 모듈로 트랜스파일
     "jsx": "preserve", // JSX 코드 생성 설정: 'preserve', 'react-native', 혹은 'react'
-    "incremental": true // 증분 컴파일 설정 여부
-    ,
+    "incremental": true, // 증분 컴파일 설정 여부
     "plugins": [
       {
         "name": "next"
