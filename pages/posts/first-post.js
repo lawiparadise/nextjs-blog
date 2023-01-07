@@ -6,7 +6,7 @@ import Layout from "../../components/layout";
 
 export default function FirstPost() {
     return (
-        <Layout> {/*만든 Layout 태그 적용*/}
+        <Layout> {/*만든 Layout2 태그 적용*/}
             <Head>
                 <title>First sfds   Post</title>
                 {/*<script src="https://connect.facebook.net/en_US/sdk.js" />  /!*이런 방식은 페이지 컨텐츠 로딩에 딜레이 발생시킬수도있음*!/*/}

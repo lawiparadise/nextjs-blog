@@ -1,5 +1,5 @@
 import styles from './layout.module.css' // CSS import해주고
-import utilStyles from '../styles/utils.module.css'
+import utilStyles from '../../styles/utils.module.css'
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +19,7 @@ import {
 const name = 'devjune'
 export const siteTitle = 'devlog'
 
-export default function Layout({children, home}) { // Layout태그 만들어 줌
+export default function MainLayout({children, home}) { // Layout태그 만들어 줌
     // return <div className={styles.container}>{children}</div>
 
     return (

@@ -34,7 +34,7 @@ npm install @mui/material @emotion/react @emotion/styled
 - 네비게이션 영역
 - 최상단에 로고 있는데, VerticalNavHeader임
 - 얘네는 ```@core/layouts/components/vertical/navigation```쪽에 많음
-- 최하단 ```afterVerticalNavMenuContent```는 ```navigation/index.tsx```에 있음
+- 최하단 ```afterVerticalNavMenuContent```는 ```navigation/index.ts```에 있음
 
 
 ### 기타

@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import {GetStaticProps, NextPage} from "next";
-import {getDictFileNamesFromFolder} from "../lib/posts";
 import {
     ActionIcon,
     AppShell, Avatar,
@@ -14,48 +11,9 @@ import {
 } from "@mantine/core";
 import Link from "next/link";
 import {IconMoonStars, IconSun, IconSearch} from "@tabler/icons";
-import MyNavbar from "./navbar";
+import MyNavbar from "../Navigation/Navbar";
 
-// export async function getStaticProps() {
-//     const dictFileNamesFromFolder = getDictFileNamesFromFolder();
-//     console.log("dictFileNamesFromFolder", dictFileNamesFromFolder)
-//
-//     return {
-//         props: { dictFileNamesFromFolder },
-//     };
-// }
-//
-// export default function BlogLayout({ dictFileNamesFromFolder, children }) {
-//   return (
-//     <div>
-//       <div>blog layout</div>
-//       <div>{dictFileNamesFromFolder}</div>
-//       <main>{children}</main>
-//     </div>
-//   )
-// }
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const dictFileNamesFromFolder = getDictFileNamesFromFolder()
-//   console.log("dictFileNamesFromFolder", dictFileNamesFromFolder)
-//
-//   return {
-//     props: {
-//       dictFileNamesFromFolder,
-//     },
-//   }
-// }
-
-// page로 쓸 게 아니라서 이거 적용 안 됨.
-// export async function getStaticProps() {
-//     const categories = await getDictFileNamesFromFolder();
-//
-//     return {
-//         props: { categories },
-//     };
-// }
-
-export default function BlogLayout({dictFileNamesFromFolder, children}) {
+export default function DefaultLayout({dictFileNamesFromFolder, children}) {
 
     const { colorScheme, toggleColorScheme } = useMantineColorScheme()
 

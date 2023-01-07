@@ -1,10 +1,10 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from "../components/layout";
+import MainLayout, { siteTitle } from "../components/Layout/MainLayout";
 import utilStyles from '../styles/utils.module.css';
 import { getDictFileNamesFromFolder, getSortedPostsData } from "../lib/posts";
 // import { getDictFileNamesFromFolder, getSortedPostsData } from "../lib/posts1";
 import Link from "next/link";
-import Date from "../components/date";
+import Date from "../lib/date";
 
 export async function getStaticProps() {
   const allPostsData = getSortedPostsData();
@@ -25,7 +25,7 @@ export default function Home({ allPostsData, categories }) { // 여기에 인자
   return (
     // <BlogLayout> 안 됨. 데이터 넘겨줘야 해
     // <BlogLayout categories={categories}> 넘겨주면 잘 됨
-    <Layout home>
+    <MainLayout home>
       <Head> {/*여기서 title 지정하면 Layout의 title 무시 */}
         <title>{siteTitle}</title>
       </Head>
@@ -51,7 +51,7 @@ export default function Home({ allPostsData, categories }) { // 여기에 인자
           ))}
         </ul>
       </section>
-    </Layout>
+    </MainLayout>
 
     // </BlogLayout>
   )
