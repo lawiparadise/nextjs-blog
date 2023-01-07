@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import MainLayout, { siteTitle } from "../components/Layout/MainLayout";
+import {MainLayout, siteTitle } from "../components";
 import utilStyles from '../styles/utils.module.css';
 import { getDictFileNamesFromFolder, getSortedPostsData } from "../lib/posts";
 // import { getDictFileNamesFromFolder, getSortedPostsData } from "../lib/posts1";

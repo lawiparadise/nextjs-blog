@@ -13,15 +13,18 @@ import Link from "next/link";
 import {IconMoonStars, IconSun, IconSearch} from "@tabler/icons";
 import MyNavbar from "../Navigation/Navbar";
 
-export default function DefaultLayout({dictFileNamesFromFolder, children}) {
-
-    const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+// component만들 때
+// export const MainLayout:FC = (props:{home}) => { // FC사용
+// export default function DefaultLayout({dictFileNamesFromFolder, children}) { // 기명 함수
+// export default function ({dictFileNamesFromFolder, children}) { // 이건 익명도 기명도 아녀
+export const DefaultLayout = ({dictFileNamesFromFolder, children}) => { // 화살표 함수인건가 익명 함수인건가
+    const {colorScheme, toggleColorScheme} = useMantineColorScheme()
 
     return (
         <AppShell
             padding="md"
             navbar={
-                 <MyNavbar dictFileNamesFromFolder={dictFileNamesFromFolder}/>
+                <MyNavbar dictFileNamesFromFolder={dictFileNamesFromFolder}/>
             }
             header={
                 <Header height={60} px="md">
@@ -32,7 +35,7 @@ export default function DefaultLayout({dictFileNamesFromFolder, children}) {
                         </Link>
                         <Group position="apart">
                             <Autocomplete
-                                style={{width:100}}
+                                style={{width: 100}}
                                 size="xs"
                                 placeholder="search"
                                 icon={<IconSearch size={16} stroke={1.5}/>}
@@ -40,8 +43,8 @@ export default function DefaultLayout({dictFileNamesFromFolder, children}) {
                             />
                             <ActionIcon variant="default"
                                         onClick={() => toggleColorScheme()} size="md">
-                                {colorScheme === 'dark' ? <IconSun size={16} /> :
-                                    <IconMoonStars size={16} />}
+                                {colorScheme === 'dark' ? <IconSun size={16}/> :
+                                    <IconMoonStars size={16}/>}
                             </ActionIcon>
                             <Group position="apart">
                                 <Text sx={{fontFamily: "Consolas"}}>june</Text>
