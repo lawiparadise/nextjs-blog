@@ -1,16 +1,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router';
 import {
-  AppShell,
   Navbar,
-  Header,
-  Group,
-  Text,
-  Avatar,
-  ActionIcon,
   NavLink,
   ScrollArea,
-  useMantineColorScheme
 } from "@mantine/core";
 import Link from 'next/link'
 import { IconSun, IconMoonStars } from '@tabler/icons'
@@ -46,7 +39,7 @@ function getFileNum(dictFileNames) {
 }
 
 // const MyNavbar: NextPage<BlogProps> = (props) => {
-export default function MyNavbar({ dictFileNamesFromFolder }) {
+export const BlogNavbar = ({ dictFileNamesFromFolder }) => {
   const dictFileNames = dictFileNamesFromFolder
   const { p, c } = getFileNum(dictFileNames)
 
@@ -55,9 +48,7 @@ export default function MyNavbar({ dictFileNamesFromFolder }) {
 
   return (
     <Navbar width={{ base: 250 }} p="md">
-      <ScrollArea
-        type="never"
-      >
+      <ScrollArea type="never">
         {
           Object.keys(dictFileNames).map((itemP, indexP) => (
             <NavLink
