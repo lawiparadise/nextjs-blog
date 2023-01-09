@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import {
   Navbar,
   NavLink,
@@ -7,27 +7,32 @@ import {
 import Link from 'next/link'
 
 export const BlogNavbar = (props) => {
+  const viewport = useRef<HTMLDivElement>(null);
   const dictFileNames = props.dictFileNamesFromFolder;
   const [pList, setPList] = useState([props.selected.p]);
+  const l = Object.keys(dictFileNames).length;
 
-  useEffect(()=>{
-      if(pList.indexOf(props.selected.p) == -1){
-          setPList([props.selected.p, ...pList] );
-      }
+  const scrollToCenter = (p) =>
+    viewport.current.scrollTo({top: viewport.current.scrollHeight * p / l, behavior: 'smooth'});
+
+  useEffect(() => {
+    if (pList.indexOf(props.selected.p) == -1) {
+      setPList([props.selected.p, ...pList]);
+    }
   }, [props.selected.p]);
-
+  
   return (
-    <Navbar width={{ base: 250 }} p="md">
-      <ScrollArea type="never">
+    <Navbar width={{base: 250}} p="md">
+      <ScrollArea type="never" viewportRef={viewport}>
         {
           Object.keys(dictFileNames).map((itemP, indexP) => (
             <NavLink
               childrenOffset={0}
               opened={(pList.indexOf(indexP) != -1)}
               // defaultOpened={(indexP === activeP)}
-              onClick={()=>{
-                  if(pList.indexOf(indexP) == -1) setPList([indexP, ...pList] );
-                  else setPList(pList.filter((v)=> v!=indexP));
+              onClick={() => {
+                if (pList.indexOf(indexP) == -1) setPList([indexP, ...pList]);
+                else setPList(pList.filter((v) => v != indexP));
               }}
               key={itemP}
               label={itemP}
@@ -41,8 +46,10 @@ export const BlogNavbar = (props) => {
                       key={itemC}
                       active={(indexC === props.selected.c && indexP === props.selected.p)}
                       label={itemC}
-                      onClick={() => {
-                          props.setPC({p:indexP,c:indexC})
+                      onClick={(v) => {
+                        console.log(v.body);
+                        props.setPC({p: indexP, c: indexC});
+                        scrollToCenter(indexP);
                       }}
                     />
                   </Link>
