@@ -158,7 +158,7 @@ export function getDictFileNamesFromFolder() {
     return dictObj
 }
 
-function getFileNames() {
+export function getFileNames() {
     const fileFolderNames = fs.readdirSync(postsDirectory)
     // console.log(fileFolderNames) // [ 'nextjs-blog', 'ssg-ssr.md', 'temp' ]
 

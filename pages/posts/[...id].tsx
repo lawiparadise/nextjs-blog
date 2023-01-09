@@ -1,4 +1,9 @@
-import {getAllPostIds, getDictFileNamesFromFolder, getPostData} from "../../lib/posts";
+import {
+    getAllPostIds,
+    getDictFileNamesFromFolder,
+    getPostData,
+    getSortedPostsData
+} from "../../lib/posts";
 import Head from "next/head";
 import Date from '../../lib/date'
 import utilStyles from '../../styles/utils.module.css'
@@ -17,36 +22,33 @@ export async function getStaticProps({params}) { // 사용자의 get 요청 값�
     // console.log(params.id) // [ 'nextjs-blog', 'nextjs-blog-1' ]
     const postData = await getPostData(params.id)
     const dictFileNamesFromFolder = getDictFileNamesFromFolder();
+    const sortedPostsData = getSortedPostsData();
 
     return {
         props: {
             postData,
             dictFileNamesFromFolder,
+            sortedPostsData,
         }
     }
 }
 
-export default function Post({postData, dictFileNamesFromFolder}) {
-    const t = `devlog:${postData.title}`
+export default function Post(props) {
+    const t = `devlog:${props.postData.title}`
     return (
-        <BlogLayout dictFileNamesFromFolder={dictFileNamesFromFolder}>
+        <BlogLayout
+            dictFileNamesFromFolder={props.dictFileNamesFromFolder}
+            sortedPostsData={props.sortedPostsData}
+        >
             <Head>
                 <title>{t}</title>
             </Head>
-            {/*{postData.title}*/}
-            {/*<br />*/}
-            {/*{postData.id}*/}
-            {/*<br />*/}
-            {/*{postData.date}*/}
-            {/*<Date dateString={postData.date}/>*/}
-            {/*<br />*/}
-            {/*<div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />*/}
             <article>
-                <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+                <h1 className={utilStyles.headingXl}>{props.postData.title}</h1>
                 <div className={utilStyles.lightText}>
-                    <Date dateString={postData.date}/>
+                    <Date dateString={props.postData.date}/>
                 </div>
-                <div dangerouslySetInnerHTML={{__html: postData.contentHtml}}/>
+                <div dangerouslySetInnerHTML={{__html: props.postData.contentHtml}}/>
             </article>
         </BlogLayout>
     );
