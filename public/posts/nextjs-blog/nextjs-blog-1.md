@@ -99,7 +99,7 @@ className을 쓰면 class이름을 랜덤으로 지정해 줌
 
 _app.tsx
 
-```js
+```javascript
 import '../styles/global.css'
 
 export default function App({ Component, pageProps }) {

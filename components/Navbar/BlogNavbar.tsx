@@ -20,7 +20,7 @@ export const BlogNavbar = (props) => {
       setPList([props.selected.p, ...pList]);
     }
   }, [props.selected.p]);
-  
+
   return (
     <Navbar width={{base: 250}} p="md">
       <ScrollArea type="never" viewportRef={viewport}>
@@ -49,7 +49,8 @@ export const BlogNavbar = (props) => {
                       onClick={(v) => {
                         console.log(v.body);
                         props.setPC({p: indexP, c: indexC});
-                        scrollToCenter(indexP);
+
+                        // scrollToCenter(indexP); 스크롤 이동은 일단 하지말자
                       }}
                     />
                   </Link>

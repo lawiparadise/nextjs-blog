@@ -3,8 +3,13 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import {remark} from "remark";
-import html from 'remark-html'
+
+// import {remark} from "remark";
+// import html from 'remark-html'
+const {marked} = require('marked');
+const Prism = require('prismjs');
+const loadLanguages = require('prismjs/components/');
+loadLanguages(['bash', 'javascript']);
 
 // const postsDirectory = path.join(process.cwd(), 'public');
 // const postsDirectory = path.join(process.cwd(), 'posts');
@@ -260,7 +265,7 @@ export async function getPostData(id) {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
     let content = matterResult.content
-    // console.log(content)
+    // console.log('content1', content);
 
     // ![](.pre-rendering_images/15ed293a.png)  >  ![](/posts/temp/.pre-rendering_images/15ed293a.png/)
     const regex = /\!\[(.*?)\]\((.*?)\)/gm
@@ -271,12 +276,82 @@ export async function getPostData(id) {
             `](/posts/${id[0]}/${matches[2]}/`
         )
     }
-    // console.log(content)
+    // console.log('content2', content);
 
-    const processedContent = await remark()
-        .use(html)
-        .process(content);
-    const contentHtml = processedContent.toString();
+    // remark
+    // const processedContent = await remark().use(html).process(content);
+    // const contentHtml = processedContent.toString();
+
+    // marked
+    //1
+    // const renderer = new marked.Renderer();
+    // renderer.code = (code, language) => {
+    //     const highlightedCode = Prism.highlight(code, Prism.languages[language]);
+    //     return `<pre class="language-${language}"><code>${highlightedCode}</code></pre>`;
+    // };
+    // marked.setOptions({ renderer });
+
+    //3
+    const renderer = {
+        // 코드 블럭을 오버라이드 합니다.
+        code(code, infostring) {
+            try {
+                return `<pre class = "language-${infostring}"><code class = "language-${infostring}">${Prism.highlight(
+                  code,
+                  Prism.languages[infostring],
+                  infostring
+                )}</code></pre>`;
+            } catch (err) {
+                return false;
+            }
+        },
+    };
+    marked.use({ renderer });
+
+
+    const MARKDOWN_TEXT = `React + marked + prism.js
+~~Code Sample:~~
+\`\`\`javascript
+import marked from "marked";
+import prismjs from "prismjs";
+
+marked.setOptions({
+  renderer,
+  highlight: function(code, lang) {
+    try {
+      return prismjs.highlight(code, prismjs.languages[lang], lang);
+    } catch {
+      return code;
+    }
+  }
+});
+\`\`\`
+`;
+
+    //2
+    // const renderer = new marked.Renderer();
+    // renderer.code = function(code, lang, escaped) {
+    //     code = this.options.highlight(code, lang);
+    //     if (!lang) {
+    //         return `<pre><code>${code}</code></pre>`;
+    //     }
+    //
+    //     var langClass = "language-" + lang;
+    //     return `<pre class="${langClass}"><code class="${langClass}">${code}</code></pre>`;
+    // };
+    // marked.setOptions({
+    //     renderer,
+    //     highlight: function(code, lang) {
+    //         try {
+    //             return prismjs.highlight(code, prismjs.languages[lang], lang);
+    //         } catch {
+    //             return code;
+    //         }
+    //     }
+    // });
+
+    const contentHtml = marked(content);
+    // console.log('contentHtml', contentHtml);
 
     // Combine the data with the id and contentHtml
     return {
