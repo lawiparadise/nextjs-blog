@@ -47,7 +47,7 @@ export const BlogNavbar = (props) => {
                       active={(indexC === props.selected.c && indexP === props.selected.p)}
                       label={itemC}
                       onClick={(v) => {
-                        console.log(v.body);
+                        // console.log(v?.body);
                         props.setPC({p: indexP, c: indexC});
 
                         // scrollToCenter(indexP); 스크롤 이동은 일단 하지말자
