@@ -50,6 +50,8 @@ export default function App(props: AppProps & {colorScheme: ColorScheme}) { //ык
 }
 
 App.getInitialProps = async (appContext: AppContext) => {
+    console.log('app initial');
+    
     const appProps = await NextApp.getInitialProps(appContext);
     return {
         ...appProps,
