@@ -49,3 +49,8 @@ date: '2022-10-05'
 - https://9yujin.tistory.com/104
 - 가정1. vercel에 배포하면 server에서의 기능을 실행 안해준다
 - ex) serversideprops로 가져오는 정보도 안 보여줄 것이다
+- 가정2. vercel에 배포하면 csr못한다 -> 잘 됨
+- https://github.com/vercel/next.js/issues/30484
+- 음......
+- 이거 그대로 netbook에 배포해서 되는지 확인해보기
+- 

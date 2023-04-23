@@ -51,10 +51,23 @@ export default function App(props: AppProps & {colorScheme: ColorScheme}) { //ык
 
 App.getInitialProps = async (appContext: AppContext) => {
     console.log('app initial');
-    
+
     const appProps = await NextApp.getInitialProps(appContext);
     return {
         ...appProps,
-        colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'dark',
+        colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'dark2',
     };
 };
+
+// export async function getServerSideProps(context) {
+//     console.log('getServerSideProps');
+//     console.log('context', context);
+//
+//     const appProps = await NextApp.getInitialProps(context);
+//     return {
+//         props: {
+//             ...appProps,
+//             colorScheme: getCookie('mantine-color-scheme', context.ctx) || 'dark',
+//         }
+//     };
+// }
