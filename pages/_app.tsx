@@ -6,11 +6,19 @@ import { CustomFonts } from "../lib/custom-fonts";
 import {MantineProvider, ColorSchemeProvider, ColorScheme} from '@mantine/core';
 import {getDictFileNamesFromFolder} from "../lib/posts";
 import {NextPageContext} from "next";
+// import { cookies } from 'next/headers';
+import { useRouter } from 'next/router';
 
-export default function App(props: AppProps & {apps:any,colorScheme: ColorScheme}) { //모든 페이지에 적용되는 top-level component임
+export default function App(props: AppProps & {apps: string, colorScheme: ColorScheme}) { //모든 페이지에 적용되는 top-level component임
     const { Component, pageProps } = props;
 
-    console.log('cookie', props.apps);
+    // const cookieStore = cookies();
+    // const cookie = cookieStore.get('mantine-color-scheme');
+
+    // const router = useRouter();
+    // console.log('cookie', router.locales);
+
+    console.log('apps', props.apps);
 
     // const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
     const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
@@ -60,7 +68,7 @@ App.getInitialProps = async (appContext: AppContext) => {
     const appProps = await NextApp.getInitialProps(appContext);
     return {
         ...appProps,
-        apps: appContext.ctx.req.headers.cookie,
+        apps: appContext.ctx.req.headers['cookie'],
         colorScheme: getCookie('mantine-color-scheme', appContext.ctx) || 'dark2',
         // colorScheme: cookie || 'dark2',
     };

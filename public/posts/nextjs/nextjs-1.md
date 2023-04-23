@@ -48,8 +48,8 @@ date: '2022-10-05'
 - getInitialPropse를 쓰지 말라고 한다..
 - https://9yujin.tistory.com/104
 - 가정1. vercel에 배포하면 server에서의 기능을 실행 안해준다
-- ex) serversideprops로 가져오는 정보도 안 보여줄 것이다
-- 가정2. vercel에 배포하면 csr못한다 -> 잘 됨
+- ex) serversideprops로 가져오는 정보도 안 보여줄 것이다->이건안되지만,
+- 가정2. vercel에 배포하면 csr못한다 -> 잘 됨. 이문제는아님
 - https://github.com/vercel/next.js/issues/30484
 - 음......
 - 이거 그대로 netbook에 배포해서 되는지 확인해보기
@@ -58,6 +58,8 @@ date: '2022-10-05'
 - 쿠키라이브러리 문제는 아님.
 - 그리고, _app.tsx는 getStaticProps나 getServerSideProps를 지원하지 않음...;
 - App does not support Next.js Data Fetching methods like getStaticProps or getServerSideProps. If you need global data fetching, consider incrementally adopting the app/ directory.
+- 로그찍어본 결과 getInitialProps가 실행은 되나, 브라우저의 쿠키가 getInitialProps로 넘어가지 않음.
+- 가정3) vercel에서 url접속은 csr로 돼서, 쿠키전달이 안된다
 
 ### getInitialProps 의 실행 원리
 ```
