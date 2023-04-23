@@ -11,11 +11,13 @@ export default function App(props: AppProps & {colorScheme: ColorScheme}) { //ык
 
     // const [colorScheme, setColorScheme] = useState<ColorScheme>("dark");
     const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
+    console.log('current color', colorScheme);
 
     // const toggleColorScheme = (value?: ColorScheme) =>
     // setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
     const toggleColorScheme = (value?: ColorScheme) => {
         const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+        console.log('color', nextColorScheme);
         setColorScheme(nextColorScheme);
         // when color scheme is updated save it to cookie
         setCookie('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
