@@ -51,7 +51,7 @@ export default function App(props: AppProps & {colorScheme: ColorScheme}) { //ык
 
 App.getInitialProps = async (appContext: AppContext) => {
     console.log('app initial');
-    const cookie = appContext.ctx.req.headers.cookie.split('=')[1]
+    const cookie = appContext.ctx?.req?.headers?.cookie?.slice(-4)
     console.log('cookie', cookie);
 
     const appProps = await NextApp.getInitialProps(appContext);
