@@ -55,6 +55,9 @@ date: '2022-10-05'
 - 이거 그대로 netbook에 배포해서 되는지 확인해보기
 - dark2로 다시 해보니, 새로고침하면 getInitialProps은 실행되는걸 확인 함
 - 단순히, local에서는 cookie를 잘 가져오고, vercel에서는 cookie를 못 가져오는 것 뿐
+- 쿠키라이브러리 문제는 아님.
+- 그리고, _app.tsx는 getStaticProps나 getServerSideProps를 지원하지 않음...;
+- App does not support Next.js Data Fetching methods like getStaticProps or getServerSideProps. If you need global data fetching, consider incrementally adopting the app/ directory.
 
 ### getInitialProps 의 실행 원리
 ```
