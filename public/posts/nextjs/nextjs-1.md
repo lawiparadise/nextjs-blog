@@ -53,4 +53,31 @@ date: '2022-10-05'
 - https://github.com/vercel/next.js/issues/30484
 - 음......
 - 이거 그대로 netbook에 배포해서 되는지 확인해보기
-- 
+- dark2로 다시 해보니, 새로고침하면 getInitialProps은 실행되는걸 확인 함
+- 단순히, local에서는 cookie를 잘 가져오고, vercel에서는 cookie를 못 가져오는 것 뿐
+
+### getInitialProps 의 실행 원리
+```
+https://davidhwang.netlify.app/TIL/(0320)nextjs%EC%97%90%EC%84%9C-next-cookies-%EC%82%AC%EC%9A%A9-%EC%9D%B4%EC%8A%88/  
+
+getInitialProps 는 next page 렌더링 위치에 따라
+실행 위치가 달라진다
+
+SSR(브라우저 url 입력, 첫 렌더링 등) : server 에서 실행
+CSR(Link component 이동, Router.push(‘url’) 등) : client 에서 실행
+위에 SSR과 CSR을 어떻게 확인할 수 있을까?
+getIntialProps 의 인자인 ctx 에서
+req 존재 여부에 따라 확인 가능하다
+
+ctx.req 가 존재하면 SSR
+ctx.req 가 undefined 면 CSR
+로 구분할 수 있다
+각 실행 위치(SSR, CSR) 에 따라서 cookie 확인 방법도 다르다
+
+SSR 일 경우, server side 에서 cookie 확인 방법
+ctx.req 가 존재하므로 req.headers.cookie 를 확인하면 cookie 확인이 가능하다
+
+CSR 일 경우, client side 에서 cookie 확인 방법
+ctx.req 가 undefined 이므로
+document.cookie 를 확인하면 cookie 확인이 가능하다
+```
