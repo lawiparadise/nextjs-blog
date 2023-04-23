@@ -39,3 +39,13 @@ date: '2022-10-05'
 
 ## 데이터를 하나의 page가 아닌 전역에서 사용하기
 - https://github.com/vercel/next.js/discussions/10949
+
+## getInitialProps 관련 문제
+- local에서 돌릴 땐 _app.tsx의 getInitialProps가 새로고침할 때 마다 실행되나, vercel에 배포 후엔 안 됨
+- 그래서 아래 코드를 실행 못해서 쿠키에 있는 theme값을 못 가져옴
+- 왜지????????????
+- https://github.com/i18next/next-i18next/issues/615
+- getInitialPropse를 쓰지 말라고 한다..
+- https://9yujin.tistory.com/104
+- 가정1. vercel에 배포하면 server에서의 기능을 실행 안해준다
+- ex) serversideprops로 가져오는 정보도 안 보여줄 것이다
