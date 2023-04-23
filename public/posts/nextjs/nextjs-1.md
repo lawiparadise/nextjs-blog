@@ -60,6 +60,7 @@ date: '2022-10-05'
 - App does not support Next.js Data Fetching methods like getStaticProps or getServerSideProps. If you need global data fetching, consider incrementally adopting the app/ directory.
 - 로그찍어본 결과 getInitialProps가 실행은 되나, 브라우저의 쿠키가 getInitialProps로 넘어가지 않음.
 - 가정3) vercel에서 url접속은 csr로 돼서, 쿠키전달이 안된다
+- 여튼 getInitialProps가 받는 context의 req는 서버only임~!
 
 ### getInitialProps 의 실행 원리
 ```
