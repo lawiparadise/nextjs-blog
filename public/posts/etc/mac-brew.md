@@ -33,4 +33,6 @@ nvm install --lts
 ```shell
 brew install yarn
 ```
-- brew install yarn --ignore-dependencies # node를 빼고 설치하기 위해서 옵션을 넣어주라는데, 안해도 되는 듯?
+- ~~brew install yarn --ignore-dependencies~~ # node를 빼고 설치하기 위해서 옵션을 넣어주라는데, 안해도 되는 듯?
+
+
