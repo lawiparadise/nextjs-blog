@@ -61,6 +61,9 @@ date: '2022-10-05'
 - 로그찍어본 결과 getInitialProps가 실행은 되나, 브라우저의 쿠키가 getInitialProps로 넘어가지 않음.
 - 가정3) vercel에서 url접속은 csr로 돼서, 쿠키전달이 안된다
 - 여튼 getInitialProps가 받는 context의 req는 서버only임~!
+- npm run start로 해보니, 배포했을때랑 같은 증상임.
+- 그냥 npm run dev했을때만 잘 되니까 그 차이인 듯
+- 왜 냐 구 요. 이유 아직 못 찾음
 
 ### getInitialProps 의 실행 원리
 ```
