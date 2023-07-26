@@ -24,15 +24,16 @@ git remote prune origin
 git push origin feature
 ```
 
-### 로컬 저장소엔 없고, 원격 저장소엔 있는 develop 브랜치를 로컬에서
-'git branch -a'했을 때 보려면?
+### 원격 저장소의 브랜치A를 로컬 저장소의 브랜치A에 반영할 때
 ```shell
-git pull origin develop
+git pull origin main
 ```
 
-### 원격 저장소에 있는 브랜치를 로컬의 브랜치로 만들려면
+### 로컬 저장소엔 없고, 원격 저장소엔 있는 브랜치를 로컬에 만들 때
 ```shell
-git checkout develop
+git checkout -t origin/develop
+git checkout develop # 이렇게 해도 원격꺼 가져와지는 듯 함
+git checkout unknown # 브랜치 없어서 error 남
 ```
 
 ### 원격 저장소에 있는 브랜치를 임시로 탐색하려면
