@@ -1,5 +1,5 @@
 ---
-title: nextjs 알아보기 - 1
+title: nextjs 알아보기 - 2
 date: '2022-10-05'
 ---
 
