@@ -77,3 +77,114 @@ tree with parent and children components, a folder structure, etc.
 ---
 
 # Pages and Layouts
+- nextjs13에서 pages, shared layouts, templates를 쉽게 만들 수 있는 file conventions를 소개 함
+
+## pages
+- page는 항상 leaf of the route subtree
+- 기본적으로 server component인데, client component가 될 수도 있음
+- pages는 data fetching 가능
+
+## Layouts
+- UI that is shared between multiple pages
+- page간 이동 할 때 state를 보존할 수도 있고, 상호작용을 유지할 수도 있음.
+- 기본적으로 server component인데, client component가 될 수도 있음
+- data fetching 가능
+- parent layout과 child layout 사이에 data를 주고받는건 불가능함
+- layout에서는 현재 route segment에 접근 불가한데, 
+- `useSelectedLayoutSegment` or `useSelectedLayoutSegments` in a Client Component
+- 를 써서 접근 가능
+
+## Root Layout (Required)
+- 여기의 <head> 태그에서 built-in SEO 사용 가능
+- _app.js와 _document.js를 대체 하는 애임
+- Root Layout은 html과 body 태그를 가져야 함
+
+## Nesting Layouts
+```javascript
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return <section>{children}</section>
+}
+```
+
+## Templates
+- layout과 비슷한데, state 유지하는 layout과는 달리 각 children에 대해 새로운 instance를 만듬
+- route에 출입할 때 css나 animation보여줄 때 사용
+- Features that rely on useEffect (e.g logging page views) and useState (e.g a per-page feedback form).
+- layout은 처음 로드 될때만 fallback을 보여주는데, temaplates는 각각의 navigation마다 fallback을 보여줌
+- `template.js`로 사용
+
+## Modifying <head>
+```javascript
+import { Metadata } from 'next'
+ 
+export const metadata: Metadata = {
+  title: 'Next.js',
+}
+ 
+export default function Page() {
+  return '...'
+}
+```
+
+---
+
+# Linking and Navigating
+- navigation의 2가지 방식이 있는데, `<Link>`와 `useRouter`
+
+## <Link> Component
+- `<a>`태그를 확장시킨 `<Link>`태그
+- prefetching을 지원하고, client-side 네비게이션 가능
+- active link인지 체크 가능
+```javascript
+'use client'
+ 
+import { usePathname } from 'next/navigation'
+import Link from 'next/link'
+ 
+export function Navigation({ navLinks }) {
+  const pathname = usePathname()
+ 
+  return (
+    <>
+      {navLinks.map((link) => {
+        const isActive = pathname === link.href
+ 
+        return (
+          <Link
+            className={isActive ? 'text-blue' : 'text-black'}
+            href={link.href}
+            key={link.name}
+          >
+            {link.name}
+          </Link>
+        )
+      })}
+    </>
+  )
+}
+```
+- scroll to a specific `id`
+```javascript
+<Link href="/dashboard#settings">Settings</Link>
+ 
+// Output
+<a href="/dashboard#settings">Settings</a>
+```
+
+## useRouter() Hook
+- client component에서만 동작 함
+
+## How Routing and Navigation Works
+- prefetching : 사용자가 사이트 방문하기 전에 background에서 route를 먼저 로드하는거
+- cachine : router cache라 불리는 client-side cache 가지고 있음
+- Partial Rendering : 변경 있는 부분만 rendering됨
+- Soft Navigation : 변경된 부분만 바꿈
+- Back and Forward Navigation : scroll position 유지
+
+---
+
+# Route Groups
