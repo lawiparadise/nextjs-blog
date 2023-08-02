@@ -1,86 +1,36 @@
-'use client'
-
-import Image from 'next/image'
-import { useContext, useEffect, useState } from 'react'
-import { Button, useTheme, Box, IconButton } from '@mui/material'
-import { ColorModeContext } from '@/components'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
+import { getSortedPostsData } from '@/lib/posts1'
+// import { MainLayout, siteTitle } from '@/components'
+import Head from 'next/head'
+import Link from 'next/link'
+import Date from '@/lib/date'
+import utilStyles from './utils.module.css'
+import { getRecentPosts } from '@/lib/posts'
 
 export default function Home() {
-  const theme = useTheme()
-  const colorMode = useContext(ColorModeContext);
-
-  const [hi, setHi] = useState('hi');
-
-  useEffect(() => {
-    fetch("https://media.giphy.com/media/OoxMUQW6wh1EftvSGH/giphy.gif")
-      .then(response => setHi(response.url))
-  }, [])
+  const posts = getRecentPosts()
+  // const allPostsData =  [{id:1}, {id:2}]
+  const siteTitle = 'hi'
 
   return (
-    <main>
-      <h1>{hi}</h1>
-      <Button variant="contained">hi</Button>
+    <>
+      <Head> {/*여기서 title 지정하면 Layout의 title 무시 */}
+        <title>{siteTitle}</title>
+      </Head>
 
-      <Box>
-        {theme.palette.mode} mode
-        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-          {theme.palette.mode === 'dark' ? <Brightness4Icon /> : <Brightness7Icon />}
-        </IconButton>
-      </Box>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Latest</h2>
+        <ul className={utilStyles.list}>
+          {posts.map(({ id }) => (
+            <li className={utilStyles.listItem} key={id}>
+              <Link href={`/posts/${id}`}>
+                {id}
+              </Link>
+              <br />
 
-      <br />
-      <br />
-      <br />
-
-      <div>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   )
 }

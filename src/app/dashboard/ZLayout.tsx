@@ -1,11 +1,12 @@
-// "use client"
+"use client"
 
 // Layouts must accept a children prop.
 // This will be populated with nested layouts or pages
 // import {getDictFileNamesFromFolder} from "../lib/posts";
 // import {getDictFileNamesFromFolder} from "../lib/posts1"; 왜 안되냐고오오
 import { NavLink } from "@mantine/core";
-import { getDictFileNamesFromFolder } from "../../../lib/posts";
+import { getDictFileNamesFromFolder } from "@/lib/posts1";
+import { Key } from "react";
 
 // import {useState} from "react";
 
@@ -35,7 +36,7 @@ export default function ZLayout({ children }: {
       'nextjs-blog-3',
       'nextjs-blog-etc-1',
       'nextjs-blog-etc-2',
-      'nextjs-mui-1'
+      'nextjs-mui-1',
     ],
     'node-dev': ['node-dev-1', 'prisma-1'],
     react: ['react-1'],
@@ -46,9 +47,9 @@ export default function ZLayout({ children }: {
       'jwt-1', 'login',
       'nx-1', 'pre-rendering',
       'qa', 'ssg-ssr',
-      'temp', 'web-storage'
+      'temp', 'web-storage',
     ],
-    typescript: ['typescript-1']
+    typescript: ['typescript-1'],
   }
   let z = '{"css":[{"b":"1"},{"b":"2"}]}'
   const dictFileNamesFromFolder = JSON.parse(z)
@@ -76,7 +77,7 @@ export default function ZLayout({ children }: {
       {/*  /!*  ))*!/*/}
       {/*  /!*}*!/*/}
       {/*</div>*/}
-        {dictFileNamesFromFolder['css'].map((item) => (
+      {dictFileNamesFromFolder['css'].map((item: { b: Key | null | undefined; }) => (
           <NavLink key={item.b}>
             z
           </NavLink>

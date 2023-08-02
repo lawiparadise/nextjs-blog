@@ -15,7 +15,9 @@ export default function Home() {
   return (
     <main>
       <h1>{hi}</h1>
-      <Button variant="contained"><Link href="/mui">mui</Link></Button>
+      <Link href="/mui"><Button variant="contained">mui</Button></Link>
+      <br/>
+      <Link href="/mantine"><Button variant="contained">mantine</Button></Link>
     </main>
   )
 }

@@ -3,11 +3,11 @@ import {
     getDictFileNamesFromFolder,
     getPostData,
     getSortedPostsData
-} from "../../lib/posts";
+} from "@/lib/posts1";
 import Head from "next/head";
 import Date from '../../lib/date'
 import utilStyles from '../../styles/utils.module.css'
-import {BlogLayout} from "../../components";
+import {BlogLayout} from "@/components";
 import {useEffect, useState} from "react";
 
 export async function getStaticPaths() { // 여기서 모든 path를 id로부터 만들어 놓는 듯
