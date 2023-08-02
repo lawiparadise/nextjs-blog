@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     experimental: {
-        appDir: false, // true이면 13버전 적용
+        appDir: true, // true이면 13버전 적용
     },
     // 아래것들 안하면 fs에러 남
     reactStrictMode: true,

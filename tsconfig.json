@@ -13,7 +13,7 @@
     "noEmit": true, // 결과 파일 안내보낼지
     "esModuleInterop": true, // 모든 imports에 대한 namespace 생성을 통해 CommonJS와 ES Modules 간의 상호 운용성이 생기게할 지 여부?
     "module": "esnext", // 컴파일에 포함될 라이브러리 파일 목록
-    "moduleResolution": "node", // 모듈 해석 방법 설정: 'node' (Node.js) 혹은 'classic' (TypeScript pre-1.6)
+    "moduleResolution": "bundler", // 모듈 해석 방법 설정: 'node' (Node.js) 혹은 'classic' (TypeScript pre-1.6)
     "resolveJsonModule": true, // json파일 잘 가져오기?
     "isolatedModules": true, // 각 파일을 분리된 모듈로 트랜스파일
     "jsx": "preserve", // JSX 코드 생성 설정: 'preserve', 'react-native', 혹은 'react'
@@ -22,7 +22,10 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": [
     "next-env.d.ts",
