@@ -1,4 +1,4 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode } from 'react'
 import {
   Navbar,
   NavLink,
@@ -6,14 +6,21 @@ import {
 } from "@mantine/core";
 import Link from 'next/link'
 
-export const BlogNavbar = (props) => {
+export const BlogNavbar = (props: {
+  dictFileNamesFromFolder: any;
+  selected: { p: unknown; c: any; };
+  setPC: (arg0: { p: number; c: any; }) => void;
+}) => {
   const viewport = useRef<HTMLDivElement>(null);
   const dictFileNames = props.dictFileNamesFromFolder;
   const [pList, setPList] = useState([props.selected.p]);
   const l = Object.keys(dictFileNames).length;
 
-  const scrollToCenter = (p) =>
-    viewport.current.scrollTo({top: viewport.current.scrollHeight * p / l, behavior: 'smooth'});
+  const scrollToCenter = (p: number) =>
+    viewport?.current?.scrollTo({
+      top: viewport.current.scrollHeight * p / l,
+      behavior: 'smooth',
+    });
 
   useEffect(() => {
     if (pList.indexOf(props.selected.p) == -1) {
@@ -22,7 +29,7 @@ export const BlogNavbar = (props) => {
   }, [props.selected.p]);
 
   return (
-    <Navbar width={{base: 250}} p="md">
+    <Navbar width={{ base: 250 }} p="md">
       <ScrollArea type="never" viewportRef={viewport}>
         {
           Object.keys(dictFileNames).map((itemP, indexP) => (
@@ -39,7 +46,7 @@ export const BlogNavbar = (props) => {
             >
               {
                 // todo ts type error 해결해야 함. dictFileNamesFromFolder
-                dictFileNames[itemP].map((itemC, indexC) => (
+                dictFileNames[itemP].map((itemC: boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | PromiseLikeOfReactNode | Key | null | undefined, indexC: any) => (
                   <Link key={itemC} href={`/posts/${itemP}/${itemC}`} passHref>
                     <NavLink
                       px="xl"

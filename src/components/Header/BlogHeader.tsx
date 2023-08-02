@@ -1,8 +1,8 @@
 import {ActionIcon, Autocomplete, Avatar, Group, Header, Text, useMantineColorScheme} from "@mantine/core";
-import {IconMoonStars, IconSearch, IconSun} from "@tabler/icons";
 import Link from "next/link";
+import {IconSearch, IconSun, IconMoonStars} from '@tabler/icons-react'
 
-export const BlogHeader = (props) => {
+export const BlogHeader = (props: { sortedPostsData: any[]; onItemSubmit: (arg0: any) => void; }) => {
     const {colorScheme, toggleColorScheme} = useMantineColorScheme()
     // console.log(props.sortedPostsData);
 
