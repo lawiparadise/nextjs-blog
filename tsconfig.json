@@ -1,14 +1,10 @@
 {
   "compilerOptions": {
     "target": "es5", // 사용할 ECMAScript 버전
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ], // 컴파일에 포함될 라이브러리 목록
+    "lib": ["dom", "dom.iterable", "esnext"], // 컴파일에 포함될 라이브러리 목록
     "allowJs": true, // js파일 컴파일 허용 여부
     "skipLibCheck": true, // declaration files의 type checking을 스킵? library의 ts검사 스킵 여부?
-    "strict": false, // 모든 엄격한 타입-체킹 옵션 활성화 여부
+    "strict": true, // 모든 엄격한 타입-체킹 옵션 활성화 여부
     "forceConsistentCasingInFileNames": true, // 같은 파일에 대한 일관되지 않은 참조를 허용하지 않을지?
     "noEmit": true, // 결과 파일 안내보낼지
     "esModuleInterop": true, // 모든 imports에 대한 namespace 생성을 통해 CommonJS와 ES Modules 간의 상호 운용성이 생기게할 지 여부?
@@ -24,16 +20,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

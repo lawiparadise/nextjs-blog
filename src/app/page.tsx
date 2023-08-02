@@ -1,58 +1,95 @@
-import Head from 'next/head';
-import {MainLayout, siteTitle } from "../components";
-import utilStyles from '../styles/utils.module.css';
-import { getDictFileNamesFromFolder, getSortedPostsData } from "../lib/posts";
-// import { getDictFileNamesFromFolder, getSortedPostsData } from "../lib/posts1";
-import Link from "next/link";
-import Date from "../lib/date";
+import Image from 'next/image'
+import styles from './page.module.css'
 
-export async function getStaticProps() {
-    const allPostsData = getSortedPostsData();
-    // const categories = getDictFileNamesFromFolder(); // 이건 됨
+export default function Home() {
+  return (
+    <main className={styles.main}>
+      <div className={styles.description}>
+        <p>
+          Get started by editing&nbsp;
+          <code className={styles.code}>src/app/page.tsx</code>
+        </p>
+        <div>
+          <a
+            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            By{' '}
+            <Image
+              src="/images/vercel.svg"
+              alt="Vercel Logo"
+              className={styles.vercelLogo}
+              width={100}
+              height={24}
+              priority
+            />
+          </a>
+        </div>
+      </div>
 
-    return {
-        props: {
-            allPostsData, //이게 Home에 전달 됨
-            // categories
-        }
-    }
-}
+      <div className={styles.center}>
+        <Image
+          className={styles.logo}
+          src="/images/next.svg"
+          alt="Next.js Logo"
+          width={180}
+          height={37}
+          priority
+        />
+      </div>
 
-export default function Home({ allPostsData, categories }) { // 여기에 인자로 allPostData에 들어 감
+      <div className={styles.grid}>
+        <a
+          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Docs <span>-&gt;</span>
+          </h2>
+          <p>Find in-depth information about Next.js features and API.</p>
+        </a>
 
-    // const aa = getDictFileNamesFromFolder(); TypeError: fs__WEBPACK_IMPORTED_MODULE_0___default(...).readdirSync is not a function
+        <a
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Learn <span>-&gt;</span>
+          </h2>
+          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
+        </a>
 
-    return (
-      // <BlogLayout> 안 됨. 데이터 넘겨줘야 해
-      // <BlogLayout categories={categories}> 넘겨주면 잘 됨
-      <MainLayout home>
-          <Head> {/*여기서 title 지정하면 Layout의 title 무시 */}
-              <title>{siteTitle}</title>
-          </Head>
+        <a
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Templates <span>-&gt;</span>
+          </h2>
+          <p>Explore the Next.js 13 playground.</p>
+        </a>
 
-          <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-              <h2 className={utilStyles.headingLg}>Latest</h2>
-              <ul className={utilStyles.list}>
-                  {allPostsData.map(({ id, date, title }) => (
-                    <li className={utilStyles.listItem} key={id}>
-                        {/*{title}*/}
-                        {/*<br />*/}
-                        {/*{id}*/}
-                        {/*<br />*/}
-                        {/*{date}*/}
-                        <Link href={`/posts/${id}`}>
-                            {title}
-                        </Link>
-                        <br />
-                        <small>
-                            <Date dateString={date} />
-                        </small>
-                    </li>
-                  ))}
-              </ul>
-          </section>
-      </MainLayout>
-
-      // </BlogLayout>
-    )
+        <a
+          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          className={styles.card}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <h2>
+            Deploy <span>-&gt;</span>
+          </h2>
+          <p>
+            Instantly deploy your Next.js site to a shareable URL with Vercel.
+          </p>
+        </a>
+      </div>
+    </main>
+  )
 }
