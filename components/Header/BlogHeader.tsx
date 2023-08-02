@@ -1,5 +1,5 @@
 import {ActionIcon, Autocomplete, Avatar, Group, Header, Text, useMantineColorScheme} from "@mantine/core";
-import {IconMoonStars, IconSearch, IconSun} from "@tabler/icons";
+import {IconMoonStars, IconSearch, IconSun} from "@tabler/icons-react";
 import Link from "next/link";
 
 export const BlogHeader = (props) => {
