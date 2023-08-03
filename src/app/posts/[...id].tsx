@@ -5,7 +5,6 @@ import {
     getSortedPostsData
 } from "@/lib/posts1";
 import Head from "next/head";
-import Date from '../../lib/date'
 import utilStyles from '../../styles/utils.module.css'
 import {BlogLayout} from "@/components";
 import {useEffect, useState} from "react";
@@ -55,7 +54,7 @@ export default function Post(props) {
             <article>
                 <h1 className={utilStyles.headingXl}>{props.postData.title}</h1>
                 <div className={utilStyles.lightText}>
-                    <Date dateString={props.postData.date}/>
+                    {props.postData.date}
                 </div>
                 <div dangerouslySetInnerHTML={{__html: props.postData.contentHtml}}/>
             </article>

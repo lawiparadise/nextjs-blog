@@ -1,8 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-
-const { marked } = require('marked')
+// import { marked } from 'marked';
+// import Prism from 'prismjs';
+// import loadLanguages from 'prismjs/components/';
+// loadLanguages(['bash', 'javascript']);
 
 const postsDir = path.join(process.cwd(), 'public') + '/posts';
 
@@ -38,6 +40,7 @@ export function getRecentPosts() {
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '')
     const fullPath = path.join(postsDir, fileName)
+
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
     // console.log('kjk', matterResult.data.title)
@@ -52,4 +55,53 @@ export function getRecentPosts() {
   return allPostsData.sort((a, b) => {
     return Date.parse(b.date) - Date.parse(a.date)
   })
+}
+
+export function getPostsId() {
+  let fileNames = getFileNames()
+  return fileNames.map(fileName => {
+    return {
+      id: fileName.replace(/\.md$/, '').split('/'),
+    }
+  })
+}
+
+export async function getPostData(id: string | string[]) {
+  let fullPath = ''
+  if (id[1] === undefined) fullPath = path.join(postsDir, `${id}.md`)
+  else fullPath = path.join(postsDir + '/' + id[0], id[1] + '.md')
+
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const matterResult = matter(fileContents)
+  let content = matterResult.content
+
+  const title: string = matterResult.data.title
+  const date: string = matterResult.data.date
+
+  // ![](.pre-rendering_images/15ed293a.png)  >  ![](/posts/temp/.pre-rendering_images/15ed293a.png/)
+  const regex = /\!\[(.*?)\]\((.*?)\)/gm
+  let matches
+  while ((matches = regex.exec(content)) !== null) {
+    content = content.replace('](' + matches[2], `](/posts/${id[0] ? id[0] : id}/${matches[2]}/`)
+  }
+
+  // const renderer = {
+  //   code(code: any, infostring: string | number) {
+  //     try {
+  //       return `<pre class = "language-${infostring}"><code class = "language-${infostring}">${Prism.highlight(
+  //         code,
+  //         Prism.languages[infostring],
+  //         infostring,
+  //       )}</code></pre>`;
+  //     } catch (err) {
+  //       return false;
+  //     }
+  //   }
+  // }
+  // marked.use({ renderer })
+
+  // const contentHtml = marked(content);
+  const contentHtml = content
+
+  return { id, title, date, contentHtml }
 }

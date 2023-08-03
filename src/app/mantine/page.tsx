@@ -13,7 +13,7 @@ export default function Home() {
       <ul className={utilStyles.list}>
         {posts.map(({ id, date, title }) => (
           <li className={utilStyles.listItem} key={id}>
-            <Link href={`/posts/${id}`}>
+            <Link href={`/mantine/posts/${id}`}>
               {title}
             </Link>
             <br />
