@@ -1,3 +1,5 @@
+'use client'
+
 import styles from './layout.module.css' // CSS import해주고
 import utilStyles from './utils.module.css'
 import Head from "next/head";

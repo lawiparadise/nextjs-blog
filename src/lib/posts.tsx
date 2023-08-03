@@ -1,7 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-const {marked} = require('marked')
+
+const { marked } = require('marked')
 
 const postsDir = path.join(process.cwd(), 'public') + '/posts';
 
@@ -40,8 +41,8 @@ export function getRecentPosts() {
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const matterResult = matter(fileContents)
     // console.log('kjk', matterResult.data.title)
-    const title = matterResult.data.title
-    const date = matterResult.data.date
+    const title: string = matterResult.data.title
+    const date: string = matterResult.data.date
 
     return { id, title, date }
   })
