@@ -1,6 +1,6 @@
 'use client'
 
-import {useState, useEffect, useRef, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode } from 'react'
+import {useRef} from 'react'
 import {
   Navbar,
   NavLink,
@@ -12,10 +12,13 @@ export const BlogNavbar = (props: {
   dictFileNamesFromFolder: any;
   selected: { p: unknown; c: any; };
   setPC: (arg0: { p: number; c: any; }) => void;
+  setPlist : (indexP: number)=>void;
+  pList: number[];
 }) => {
   const viewport = useRef<HTMLDivElement>(null);
   const dictFileNames = props.dictFileNamesFromFolder;
-  const [pList, setPList] = useState([props.selected.p]);
+  // const [pList, setPList] = useState([props.selected.p]);
+  // console.log('pList', pList)
   const l = Object.keys(dictFileNames).length;
 
   const scrollToCenter = (p: number) =>
@@ -24,31 +27,34 @@ export const BlogNavbar = (props: {
       behavior: 'smooth',
     });
 
-  useEffect(() => {
-    if (pList.indexOf(props.selected.p) == -1) {
-      setPList([props.selected.p, ...pList]);
-    }
-  }, [props.selected.p]);
+  // useEffect(() => {
+  //   if (pList.indexOf(props.selected.p) == -1) {
+  //     setPList([props.selected.p, ...pList]);
+  //   }
+  // }, [props.selected.p]);
 
   return (
     <Navbar width={{ base: 250 }} p="md">
       <ScrollArea type="never" viewportRef={viewport}>
         {
           Object.keys(dictFileNames).map((itemP, indexP) => (
+            <div>
             <NavLink
               childrenOffset={0}
-              opened={(pList.indexOf(indexP) != -1)}
+              opened={(props.pList.indexOf(indexP) != -1)}
               // defaultOpened={(indexP === activeP)}
               onClick={() => {
-                if (pList.indexOf(indexP) == -1) setPList([indexP, ...pList]);
-                else setPList(pList.filter((v) => v != indexP));
+                props.setPlist(indexP)
+                console.log('onClick', indexP)
+                // if (pList.indexOf(indexP) == -1) setPList([indexP, ...pList]);
+                // else setPList(pList.filter((v) => v != indexP));
               }}
               key={itemP}
               label={itemP}
             >
               {
                 // todo ts type error 해결해야 함. dictFileNamesFromFolder
-                dictFileNames[itemP].map((itemC: boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | PromiseLikeOfReactNode | Key | null | undefined, indexC: any) => (
+                dictFileNames[itemP].map((itemC: any, indexC: any) => (
                   <Link key={itemC} href={`/mantine/posts/${itemP}/${itemC}`} passHref>
                     <NavLink
                       px="xl"
@@ -66,6 +72,8 @@ export const BlogNavbar = (props: {
                 ))
               }
             </NavLink>
+          </div>
+
           ))
         }
       </ScrollArea>
