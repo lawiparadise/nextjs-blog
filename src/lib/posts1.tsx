@@ -207,7 +207,7 @@ export function getFileNames() {
       'temp/pre-rendering.md'
     ]
      */
-    console.log(fileNames)
+    // console.log(fileNames)
     return fileNames
 }
 

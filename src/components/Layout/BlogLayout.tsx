@@ -1,9 +1,11 @@
+'use client'
+
 import {
     AppShell,
 } from "@mantine/core";
 import {BlogNavbar} from "../Navbar";
 import {BlogHeader} from "../Header";
-import {useRouter} from "next/router";
+// import {useRouter} from "next/router";
 import {JSXElementConstructor, PromiseLikeOfReactNode, ReactElement, ReactNode, ReactPortal,
   SetStateAction,
   useEffect,
@@ -35,9 +37,10 @@ export const BlogLayout = (props: {
   sortedPostsData: any[];
   children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined;
 }) => { // 화살표 함수인건가 익명 함수인건가
-  const router = useRouter();
+  // const router = useRouter();
   const data = props.dictFileNamesFromFolder;
-  const pc = getFileNumFromPath(data, router.asPath);
+  // const pc = getFileNumFromPath(data, router.asPath);
+  const pc = getFileNumFromPath(data, "css-1");
   const [selected, setSelected] = useState(pc);
 
   return (
@@ -54,10 +57,10 @@ export const BlogLayout = (props: {
                 <BlogHeader
                     sortedPostsData={props.sortedPostsData}
                     onItemSubmit={(a) => {
-                        const path = '/posts/' + a[0].id;
+                        const path = 'mantine/posts/' + a[0].id;
                         const pc2 = getFileNumFromPath(data, path)
                         setSelected(pc2);
-                        router.push(path);
+                        // router.push(path);
                     }}
                 />
             }

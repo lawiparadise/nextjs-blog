@@ -1,3 +1,5 @@
+'use client'
+
 import {useState, useEffect, useRef, JSXElementConstructor, Key, PromiseLikeOfReactNode, ReactElement, ReactNode } from 'react'
 import {
   Navbar,
@@ -47,7 +49,7 @@ export const BlogNavbar = (props: {
               {
                 // todo ts type error 해결해야 함. dictFileNamesFromFolder
                 dictFileNames[itemP].map((itemC: boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | PromiseLikeOfReactNode | Key | null | undefined, indexC: any) => (
-                  <Link key={itemC} href={`/posts/${itemP}/${itemC}`} passHref>
+                  <Link key={itemC} href={`/mantine/posts/${itemP}/${itemC}`} passHref>
                     <NavLink
                       px="xl"
                       key={itemC}

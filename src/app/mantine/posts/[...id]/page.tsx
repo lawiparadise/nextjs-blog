@@ -1,23 +1,24 @@
 import Head from "next/head";
 import { getPostsId, getPostData } from '@/lib/posts'
 import utilStyles from '@/components/Theme/utils.module.css'
+import { getDictFileNamesFromFolder, getSortedPostsData } from '@/lib/posts1'
+import { BlogLayout } from '@/components'
+
 
 export async function generateStaticParams() {
   return getPostsId()
 }
 
 export default async function Post({ params }: { params: { id: string | string[] } }) {
-  // console.log('id', params.id)
   const postData = await getPostData(params.id)
-  // console.log(postData)
-  // const t = `devlog:${postData.title}`
+  const dictFileNamesFromFolder = getDictFileNamesFromFolder();
+  const sortedPostsData = getSortedPostsData();
 
   return (
-    // <BlogLayout
-    //   dictFileNamesFromFolder={props.dictFileNamesFromFolder}
-    //   sortedPostsData={props.sortedPostsData}
-    // >
-    <>
+    <BlogLayout
+      dictFileNamesFromFolder={dictFileNamesFromFolder}
+      sortedPostsData={sortedPostsData}
+    >
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
@@ -25,10 +26,7 @@ export default async function Post({ params }: { params: { id: string | string[]
         </div>
         <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>
-    </>
-
-
-    // </BlogLayout>
+    </BlogLayout>
 
   )
 }

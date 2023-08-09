@@ -1,9 +1,11 @@
+'use client'
+
 import {ActionIcon, Autocomplete, Avatar, Group, Header, Text, useMantineColorScheme} from "@mantine/core";
 import Link from "next/link";
 import {IconSearch, IconSun, IconMoonStars} from '@tabler/icons-react'
 
 export const BlogHeader = (props: { sortedPostsData: any[]; onItemSubmit: (arg0: any) => void; }) => {
-    const {colorScheme, toggleColorScheme} = useMantineColorScheme()
+    // const {colorScheme, toggleColorScheme} = useMantineColorScheme()
     // console.log(props.sortedPostsData);
 
     return (
@@ -28,11 +30,11 @@ export const BlogHeader = (props: { sortedPostsData: any[]; onItemSubmit: (arg0:
                             props.onItemSubmit(a)
                         }}
                     />
-                    <ActionIcon
-                        variant="default"
-                        onClick={() => toggleColorScheme()} size="md">
-                        {colorScheme != 'dark' ? <IconSun size={16}/> : <IconMoonStars size={16}/>}
-                    </ActionIcon>
+                    {/*<ActionIcon*/}
+                    {/*    variant="default"*/}
+                    {/*    onClick={() => toggleColorScheme()} size="md">*/}
+                    {/*    {colorScheme != 'dark' ? <IconSun size={16}/> : <IconMoonStars size={16}/>}*/}
+                    {/*</ActionIcon>*/}
                     <Group position="apart">
                         <Text sx={{fontFamily: "Consolas"}}>june</Text>
                         <Avatar color="cyan" radius="xl" size="md">j</Avatar>
