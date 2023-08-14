@@ -57,7 +57,7 @@ export function getRecentPosts() {
   })
 }
 
-export function getPostsId() {
+export function getPostsPaths() {
   let fileNames = getFileNames()
   return fileNames.map(fileName => {
     return {
@@ -66,10 +66,10 @@ export function getPostsId() {
   })
 }
 
-export async function getPostData(id: string | string[]) {
+export async function getPostData(paths: string | string[]) {
   let fullPath = ''
-  if (id[1] === undefined) fullPath = path.join(postsDir, `${id}.md`)
-  else fullPath = path.join(postsDir + '/' + id[0], id[1] + '.md')
+  if (paths[1] === undefined) fullPath = path.join(postsDir, `${paths}.md`)
+  else fullPath = path.join(postsDir + '/' + paths[0], paths[1] + '.md')
 
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContents)
@@ -82,7 +82,7 @@ export async function getPostData(id: string | string[]) {
   const regex = /\!\[(.*?)\]\((.*?)\)/gm
   let matches
   while ((matches = regex.exec(content)) !== null) {
-    content = content.replace('](' + matches[2], `](/posts/${id[0] ? id[0] : id}/${matches[2]}/`)
+    content = content.replace('](' + matches[2], `](/posts/${paths[0] ? paths[0] : paths}/${matches[2]}/`)
   }
 
   // const renderer = {
@@ -103,5 +103,5 @@ export async function getPostData(id: string | string[]) {
   // const contentHtml = marked(content);
   const contentHtml = content
 
-  return { id, title, date, contentHtml }
+  return { paths, title, date, contentHtml }
 }
