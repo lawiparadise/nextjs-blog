@@ -6,12 +6,14 @@ import {
 import { BlogNavbar } from "../Navbar"
 import { BlogHeader } from "../Header"
 import { useRouter, usePathname } from 'next/navigation'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import Counter from '@/components/Counter.component'
 
 function getFileNumFromPath(dictFileNames: {
   [x: string]: string | any[];
 }, asPath: string) {
-  let p, c: number = 0
+  let p: number = 0
+  let c: number = 0
   if (asPath.split('/')[2] == 'posts') { // posts로 접근했을 때만 가능하게하기
     const folderName = asPath.split('/')[3]
     const fileName = asPath.split('/')[4]
@@ -41,8 +43,18 @@ export default function BlogLayout({
   const pc = getFileNumFromPath(data, pathName);
   const [selected, setSelected] = useState(pc);
   // console.log('pc', pc)
-  const [pList, setPList] = useState<any[]>([pc.p]);
+  const [pList, setPList] = useState<number[]>([pc.p]);
   // console.log('pList', pList)
+
+  // const PrevCountRef = useRef([0]);
+  // useEffect(() => {
+    // console.log("work");
+    // if(PrevCountRef.current == undefined) PrevCountRef.current = [0]
+    // else PrevCountRef.current = pList;
+  // });
+
+  // const PrevCount = PrevCountRef.current;
+  // console.log(pList, PrevCount);
 
   useEffect(() => {
     // console.log('effect')
@@ -58,7 +70,7 @@ export default function BlogLayout({
         <BlogNavbar
           dictFileNamesFromFolder={data}
           selected={selected}
-          setPC={(v: { p: number | undefined; c: number; }) => setSelected(v)}
+          setPC={(v: { p: number; c: number; }) => setSelected(v)}
           pList={pList}
           setPlist={(indexP: number) => {
             if (pList.indexOf(indexP) == -1) setPList([indexP, ...pList]);
