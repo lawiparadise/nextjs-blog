@@ -1,39 +1,40 @@
 import {
-    getAllPostIds,
+    getPostsPaths,
     getDictFileNamesFromFolder,
     getPostData,
-    getSortedPostsData
-} from "@/lib/posts1";
+    getRecentPosts
+} from "@/lib/posts";
 import Head from "next/head";
 import utilStyles from '../../styles/utils.module.css'
-import {BlogLayout} from "@/components";
+import BlogLayout from "@/components/Layout/BlogLayout";
 import {useEffect, useState} from "react";
 
 export async function getStaticPaths() { // 여기서 모든 path를 id로부터 만들어 놓는 듯
-    let paths = getAllPostIds(); // 이 때 생성되는 paths는 id들을 리스트로 가지고 있음
+    let paths = getPostsPaths(); // 이 때 생성되는 paths는 id들을 리스트로 가지고 있음
     return {
         paths,
         fallback: false, //false인 경우 경로 없으면 404 뜸. true인 경우~
     }
 }
 
-export async function getStaticProps({params}) { // 사용자의 get 요청 값이 params로 들어감.
+export async function getStaticProps({params}:{params:any}) { // 사용자의 get 요청 값이 params로
+    // 들어감.
     // console.log(params) // [id].js일 경우 { id: 'ssg-ssr' } > [...id].js일 경우 { id: [ 'ssg-ssr' ] }
     // console.log(params.id) // [ 'nextjs-blog', 'nextjs-blog-1' ]
     const postData = await getPostData(params.id)
     const dictFileNamesFromFolder = getDictFileNamesFromFolder();
-    const sortedPostsData = getSortedPostsData();
+    const recentPostsData = getRecentPosts();
 
     return {
         props: {
             postData,
             dictFileNamesFromFolder,
-            sortedPostsData,
+            recentPostsData,
         }
     }
 }
 
-export default function Post(props) {
+export default function Post(props:any) {
     const t = `devlog:${props.postData.title}`
     const [hi, setHi] = useState('hi');
 
@@ -45,7 +46,7 @@ export default function Post(props) {
     return (
         <BlogLayout
             dictFileNamesFromFolder={props.dictFileNamesFromFolder}
-            sortedPostsData={props.sortedPostsData}
+            recentPostsData={props.recentPostsData}
         >
             <Head>
                 <title>{t}</title>

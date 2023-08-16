@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import BlogLayout from '@/components/Layout/BlogLayout'
-import { getDictFileNamesFromFolder, getSortedPostsData } from '@/lib/posts1'
+import { getDictFileNamesFromFolder, getRecentPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
   title: 'posts',
@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 export default function PostLayout({ children }: { children: React.ReactNode }) {
   const dictFileNamesFromFolder = getDictFileNamesFromFolder()
   // console.log('dictFileNamesFromFolder', dictFileNamesFromFolder)
-  const sortedPostsData = getSortedPostsData()
+  const recentPostsData = getRecentPosts()
   // console.log('sortedPostsData', sortedPostsData)
 
   return (
     <BlogLayout
       dictFileNamesFromFolder={dictFileNamesFromFolder}
-      sortedPostsData={sortedPostsData}
+      recentPostsData={recentPostsData}
     >
       {children}
     </BlogLayout>

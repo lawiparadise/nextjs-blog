@@ -5,7 +5,7 @@
 // import {getDictFileNamesFromFolder} from "../lib/posts";
 // import {getDictFileNamesFromFolder} from "../lib/posts1"; 왜 안되냐고오오
 import { NavLink } from "@mantine/core";
-import { getDictFileNamesFromFolder } from "@/lib/posts1";
+import { getDictFileNamesFromFolder } from "@/lib/posts";
 import { Key } from "react";
 
 // import {useState} from "react";

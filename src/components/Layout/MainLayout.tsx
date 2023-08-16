@@ -22,7 +22,7 @@ import {FC} from "react";
 const name = 'devjune'
 export const siteTitle = 'devlog'
 
-export const MainLayout = ({children, home}) => { // Layout태그 만들어 줌
+export const MainLayout = ({children, home}:{children:React.ReactNode, home:any}) => { // Layout태그 만들어 줌
     // return <div className={styles.container}>{children}</div>
 
     return (

@@ -30,11 +30,11 @@ function getFileNumFromPath(dictFileNames: {
 export default function BlogLayout({
   children,
   dictFileNamesFromFolder,
-  sortedPostsData,
+  recentPostsData,
 }: {
   children: React.ReactNode,
   dictFileNamesFromFolder: any,
-  sortedPostsData: any[]
+  recentPostsData: any[]
 }) {
   const router = useRouter()
   const pathName = usePathname()
@@ -80,7 +80,7 @@ export default function BlogLayout({
       }
       header={
         <BlogHeader
-          sortedPostsData={sortedPostsData}
+          sortedPostsData={recentPostsData}
           onItemSubmit={(a) => {
             const path = '/mantine/posts/' + a[0].id;
             const pc2 = getFileNumFromPath(data, path)

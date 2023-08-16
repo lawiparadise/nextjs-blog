@@ -17,10 +17,7 @@ function getFileNames() {
     return res
   }, [])
 
-  const folderNames = fileFolderNames.reduce((res: string[], cur) => {
-    if (cur.substring(cur.length - 3, cur.length) !== '.md') res.push(cur)
-    return res
-  }, [])
+  const folderNames = getFolderNames(fileFolderNames)
 
   for (let i = 0; i < folderNames.length; i++) {
     const fileNamesInFolder = fs.readdirSync(postsDir + '/' + folderNames[i])
@@ -32,6 +29,13 @@ function getFileNames() {
   }
   // console.log(fileNames)
   return fileNames
+}
+
+function getFolderNames(fileFolderNames: string[]) {
+  return fileFolderNames.reduce((res: string[], cur) => {
+    if (cur.substring(cur.length - 3, cur.length) !== '.md') res.push(cur)
+    return res
+  }, [])
 }
 
 export function getRecentPosts() {
@@ -104,4 +108,27 @@ export async function getPostData(paths: string | string[]) {
   const contentHtml = content
 
   return { paths, title, date, contentHtml }
+}
+
+export function getDictFileNamesFromFolder() {
+  const fileFolderNames = fs.readdirSync(postsDir)
+  const folderNames = getFolderNames(fileFolderNames)
+  // console.log('folderNames', folderNames)
+
+  const fileNamesFromFolder = folderNames.reduce((a:{[key:string]:string[]}, c) => {
+    let fileNamesInFolder = fs.readdirSync(postsDir + '/' + c)
+
+    const fileNames = fileNamesInFolder
+      .filter((v2) =>
+        v2.substring(v2.length - 7, v2.length) !== '_images',
+      ).map((v2) => v2.substring(0, v2.length - 3))
+    // console.log('fileNames', fileNames)
+
+    a[c] = fileNames
+
+    return a
+  }, {})
+  // console.log('fileNamesFromFolder', fileNamesFromFolder)
+
+  return fileNamesFromFolder
 }
