@@ -1,5 +1,6 @@
 import { getPostsPaths, getPostData } from '@/lib/posts'
 import utilStyles from '@/components/Theme/utils.module.css'
+import MDPost from '@/components/Post/MDPost'
 
 export async function generateStaticParams() {
   return getPostsPaths()
@@ -14,7 +15,7 @@ export default async function Post({ params }: { params: { id: string | string[]
         <div className={utilStyles.lightText}>
           {postData.date}
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <MDPost postData={postData.content}/>
       </article>
   )
 }

@@ -1,10 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-// import { marked } from 'marked';
-// import Prism from 'prismjs';
-// import loadLanguages from 'prismjs/components/';
-// loadLanguages(['bash', 'javascript']);
 
 const postsDir = path.join(process.cwd(), 'public') + '/posts';
 
@@ -86,28 +82,10 @@ export async function getPostData(paths: string | string[]) {
   const regex = /\!\[(.*?)\]\((.*?)\)/gm
   let matches
   while ((matches = regex.exec(content)) !== null) {
-    content = content.replace('](' + matches[2], `](/posts/${paths[0] ? paths[0] : paths}/${matches[2]}/`)
+    content = content.replace('](' + matches[2], `](\/posts\/${paths[0]}\/${matches[2]}\/`)
   }
 
-  // const renderer = {
-  //   code(code: any, infostring: string | number) {
-  //     try {
-  //       return `<pre class = "language-${infostring}"><code class = "language-${infostring}">${Prism.highlight(
-  //         code,
-  //         Prism.languages[infostring],
-  //         infostring,
-  //       )}</code></pre>`;
-  //     } catch (err) {
-  //       return false;
-  //     }
-  //   }
-  // }
-  // marked.use({ renderer })
-
-  // const contentHtml = marked(content);
-  const contentHtml = content
-
-  return { paths, title, date, contentHtml }
+  return { paths, title, date, content }
 }
 
 export function getDictFileNamesFromFolder() {
