@@ -39,7 +39,6 @@ export const BlogNavbar = (props: {
               label={itemP}
             >
               {
-                // todo ts type error 해결해야 함. dictFileNamesFromFolder
                 dictFileNames[itemP].map((itemC: any, indexC: any) => (
                   <Link key={'c-' + itemC} href={`/mantine/posts/${itemP}/${itemC}`}>
                     <NavLink

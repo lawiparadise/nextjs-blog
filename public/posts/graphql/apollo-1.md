@@ -32,7 +32,7 @@ npm install apollo-server graphql
 ```
 
 server.js
-```shell
+```javascript
 const { ApolloServer, gql } = require("apollo-server");
 
 // The GraphQL schema
