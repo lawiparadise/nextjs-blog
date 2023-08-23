@@ -3,8 +3,9 @@
 import { createTheme, PaletteMode, useMediaQuery } from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material'
-import React, { createContext, useEffect, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
+import { setThemeCookie } from '@/lib/cookieStore'
 
 // https://mui.com/material-ui/customization/dark-mode/
 export const ColorModeContext = createContext({
@@ -78,30 +79,24 @@ const getDesignTokens = (mode: PaletteMode) => ({
   },
 })
 
-export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // const theme:any = typeof window !== 'undefined' ? 'dark' : localStorage.getItem('theme')
-  // console.log('theme', theme)
+export default function ThemeProvider({ children, theme }: { children: React.ReactNode, theme: any }) {
+  console.log('theme', theme)
 
-  let theme:any = 'dark'
+  // todo useMediaQuery는 나중에 하기
+  // const t = theme ?? useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
+  // console.log('useMediaQuery(\'(prefers-color-scheme: dark)\')', useMediaQuery('(prefers-color-scheme: dark)'))
 
   const [mode, setMode] = React.useState<'light' | 'dark'>(theme ?? 'dark');
-
-  useEffect(() => {
-    theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark'
-    setMode(theme)
-    console.log('hi')
-  }, []);
-
   console.log('mode', mode)
 
   const colorMode = useMemo(() => ({
-      toggleColorMode: () => {
-        localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light')
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
+    toggleColorMode: () => {
+      console.log('toggle')
+      setThemeCookie(mode === 'light' ? 'dark' : 'light').then()
+
+      setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'))
+    },
+  }), [])
 
   // dark mode from browser setting
   // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

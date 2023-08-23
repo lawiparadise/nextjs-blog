@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import ThemeProvider from '@/components/Theme/MuiTheme'
+import { cookies } from 'next/headers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -10,8 +11,12 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = cookies()
+  const theme = cookieStore.get('theme')?.value
+  // console.log('layout theme', theme)
+
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       {children}
     </ThemeProvider>
   )
