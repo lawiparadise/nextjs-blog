@@ -10,7 +10,14 @@ import {
 } from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material'
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
 import { changeThemeCookie } from '@/lib/cookieStore'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
@@ -94,9 +101,17 @@ export default function ThemeProvider({ children, theme }: { children: React.Rea
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
       // console.log('toggle')
-      changeThemeCookie().then((v)=>{
-        setMode(v)
-      })
+
+      // error : Detected multiple renderers concurrently rendering the same context
+      // changeThemeCookie().then()
+
+      // working
+      fetch('/cookie', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }).then()
+
+      setMode((prevState)=> (prevState === 'light' ? 'dark' : 'light'))
     },
   }), [])
 

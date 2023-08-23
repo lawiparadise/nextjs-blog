@@ -6,7 +6,7 @@ import {
 import { BlogNavbar } from "../Navbar"
 import { BlogHeader } from "../Header"
 import { useRouter, usePathname } from 'next/navigation'
-import { useContext, useEffect, useRef, useState } from "react"
+import { useCallback, useContext, useEffect, useRef, useState } from "react"
 import Counter from '@/components/Counter.component'
 import { cookies } from 'next/headers'
 import { Box, IconButton, useTheme } from '@mui/material'
