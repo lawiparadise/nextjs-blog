@@ -6,8 +6,13 @@ import {
 import { BlogNavbar } from "../Navbar"
 import { BlogHeader } from "../Header"
 import { useRouter, usePathname } from 'next/navigation'
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import Counter from '@/components/Counter.component'
+import { cookies } from 'next/headers'
+import { Box, IconButton, useTheme } from '@mui/material'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
+import { ColorModeContext } from '@/components'
 
 function getFileNumFromPath(dictFileNames: {
   [x: string]: string | any[];
@@ -27,73 +32,22 @@ function getFileNumFromPath(dictFileNames: {
   return { p, c }
 }
 
-export default function BlogLayout({
-  children,
-  dictFileNamesFromFolder,
-  recentPostsData,
-}: {
-  children: React.ReactNode,
-  dictFileNamesFromFolder: any,
-  recentPostsData: any[]
+export default function BlogLayout({ children, dictFileNamesFromFolder, recentPostsData }: {
+  children: React.ReactNode, dictFileNamesFromFolder: any, recentPostsData: any[]
 }) {
-  const router = useRouter()
-  const pathName = usePathname()
-
-  const data = dictFileNamesFromFolder;
-  const pc = getFileNumFromPath(data, pathName);
-  const [selected, setSelected] = useState(pc);
-  // console.log('pc', pc)
-  const [pList, setPList] = useState<number[]>([pc.p]);
-  // console.log('pList', pList)
-
-  // const PrevCountRef = useRef([0]);
-  // useEffect(() => {
-    // console.log("work");
-    // if(PrevCountRef.current == undefined) PrevCountRef.current = [0]
-    // else PrevCountRef.current = pList;
-  // });
-
-  // const PrevCount = PrevCountRef.current;
-  // console.log(pList, PrevCount);
-
-  useEffect(() => {
-    // console.log('effect')
-    if (pList.indexOf(selected.p) == -1) {
-      setPList([selected.p, ...pList])
-    }
-  }, [pc])
+  const theme = useTheme()
+  const colorMode = useContext(ColorModeContext);
 
   return (
-    <AppShell
-      padding="md"
-      navbar={
-        <BlogNavbar
-          dictFileNamesFromFolder={data}
-          selected={selected}
-          setPC={(v: { p: number; c: number; }) => setSelected(v)}
-          pList={pList}
-          setPlist={(indexP: number) => {
-            if (pList.indexOf(indexP) == -1) setPList([indexP, ...pList]);
-            else setPList(pList.filter((v) => v != indexP));
-          }}
-        />
-      }
-      header={
-        <BlogHeader
-          sortedPostsData={recentPostsData}
-          onItemSubmit={(a) => {
-            const path = '/mantine/posts/' + a[0].id;
-            const pc2 = getFileNumFromPath(data, path)
-            setSelected(pc2);
-            router.push(path);
-          }}
-        />
-      }
-      styles={(theme) => ({
-        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
-      })}
-    >
+    <>
+      {/*wokring*/}
+      <Box>
+        {theme.palette.mode} mode
+        <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
+          {theme.palette.mode === 'dark' ? <Brightness4Icon /> : <Brightness7Icon />}
+        </IconButton>
+      </Box>
       <main>{children}</main>
-    </AppShell>
+    </>
   )
 }

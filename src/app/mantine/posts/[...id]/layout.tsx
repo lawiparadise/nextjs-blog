@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import BlogLayout from '@/components/Layout/BlogLayout'
+import MantineBlogLayout from '@/components/Layout/MantineBlogLayout'
 import { getDictFileNamesFromFolder, getRecentPosts } from '@/lib/posts'
 
 export const metadata: Metadata = {
@@ -14,11 +14,11 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
   // console.log('sortedPostsData', sortedPostsData)
 
   return (
-    <BlogLayout
+    <MantineBlogLayout
       dictFileNamesFromFolder={dictFileNamesFromFolder}
       recentPostsData={recentPostsData}
     >
       {children}
-    </BlogLayout>
+    </MantineBlogLayout>
   )
 }

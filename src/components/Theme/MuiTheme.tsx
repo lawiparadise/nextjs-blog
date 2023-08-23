@@ -1,11 +1,20 @@
 'use client'
 
-import { createTheme, PaletteMode, useMediaQuery } from '@mui/material'
+import {
+  Box,
+  createTheme,
+  IconButton,
+  PaletteMode,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material'
-import React, { createContext, useEffect, useMemo, useState } from 'react'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
 import { changeThemeCookie } from '@/lib/cookieStore'
+import Brightness4Icon from '@mui/icons-material/Brightness4'
+import Brightness7Icon from '@mui/icons-material/Brightness7'
 
 // https://mui.com/material-ui/customization/dark-mode/
 export const ColorModeContext = createContext({
