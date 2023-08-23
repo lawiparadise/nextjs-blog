@@ -100,18 +100,14 @@ export default function ThemeProvider({ children, theme }: { children: React.Rea
 
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
-      // console.log('toggle')
-
-      // error : Detected multiple renderers concurrently rendering the same context
-      // changeThemeCookie().then()
-
-      // working
       fetch('/cookie', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
-      }).then()
+      }).then(()=>{
+        setMode((prevState)=> (prevState === 'light' ? 'dark' : 'light'))
+      })
 
-      setMode((prevState)=> (prevState === 'light' ? 'dark' : 'light'))
+
     },
   }), [])
 
