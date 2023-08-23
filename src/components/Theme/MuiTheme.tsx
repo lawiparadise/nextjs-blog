@@ -3,7 +3,7 @@
 import { createTheme, PaletteMode, useMediaQuery } from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider as MuiThemeProvider } from '@mui/material'
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
 
 // https://mui.com/material-ui/customization/dark-mode/
@@ -79,11 +79,24 @@ const getDesignTokens = (mode: PaletteMode) => ({
 })
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+  // const theme:any = typeof window !== 'undefined' ? 'dark' : localStorage.getItem('theme')
+  // console.log('theme', theme)
 
-  const [mode, setMode] = React.useState<'light' | 'dark'>('light');
+  let theme:any = 'dark'
+
+  const [mode, setMode] = React.useState<'light' | 'dark'>(theme ?? 'dark');
+
+  useEffect(() => {
+    theme = localStorage.getItem('theme') ? localStorage.getItem('theme') : 'dark'
+    setMode(theme)
+    console.log('hi')
+  }, []);
+
+  console.log('mode', mode)
 
   const colorMode = useMemo(() => ({
       toggleColorMode: () => {
+        localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light')
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
