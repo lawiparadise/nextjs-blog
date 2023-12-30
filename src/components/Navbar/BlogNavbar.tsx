@@ -1,65 +1,68 @@
 'use client'
 
 import { useState } from "react"
-import { List, ListSubheader, ListItemButton, ListItemText, Drawer, Box } from '@mui/material'
-import ExpandLess from '@mui/icons-material/ExpandLess'
-import ExpandMore from '@mui/icons-material/ExpandMore'
+import { List, ListItemButton, ListItemText, Drawer, Box, Link, useTheme } from '@mui/material'
 import Collapse from '@mui/material/Collapse'
+import NextLink from 'next/link'
+import { ExpandLess, ExpandMore } from '@mui/icons-material'
+import { CatESCAvatar } from "@/components"
 
 export const BlogNavbar = (props: {
   window?: () => Window
   dictFileNamesFromFolder: any
   drawerWidth: number
+  selected: { a: unknown; b: any; }
+  aList: number[]
+  setAList: (indexA: number) => void;
+  setAB: (arg0: { a: number; b: any; }) => void;
 }) => {
-  const { window } = props
-  const [mobileOpen, setMobileOpen] = useState(false)
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
-
-  const [open, setOpen] = useState(true);
-
-  const handleClick = () => {
-    setOpen(!open);
-  };
-
   const dictFileNames = props.dictFileNamesFromFolder
 
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen)
+  const { window } = props
   const container = window !== undefined ? () => window().document.body : undefined;
 
   const drawer = (
-    <List>
-      {
-        Object.keys(dictFileNames).map((itemA, indexA) => (
-          <>
-            <ListItemButton>
-              <ListItemText primary={itemA} />
-              {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                {
-                  dictFileNames[itemA].map((itemB: any, indexB: any) => (
-                    <ListItemButton sx={{ pl: 4 }}>
-                      <ListItemText primary={itemB} />
-                    </ListItemButton>
-                  ))
-                }
-              </List>
-            </Collapse>
-          </>
-        ))
-      }
-    </List>
+    <>
+      <CatESCAvatar />
+      <List>
+        {
+          Object.keys(dictFileNames).map((itemA, indexA) => (
+            <>
+              <ListItemButton
+                onClick={() => props.setAList(indexA)}
+              >
+                <ListItemText primary={itemA} />
+                {props.aList.indexOf(indexA) != -1 ? <ExpandLess /> : <ExpandMore />}
+              </ListItemButton>
+              <Collapse in={(props.aList.indexOf(indexA) != -1)} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  {
+                    dictFileNames[itemA].map((itemB: any, indexB: any) => (
+                      <Link href={`/posts/${itemA}/${itemB}`} component={NextLink} key={"b-" + itemB} color="inherit" >
+                        <ListItemButton sx={{ mx: 2 }}
+                          selected={(indexB == props.selected.b && indexA == props.selected.a)}
+                          onClick={() => {
+                            props.setAB({ a: indexA, b: indexB })
+                          }}
+                        >
+                          <ListItemText primary={itemB} />
+                        </ListItemButton>
+                      </Link>
+                    ))
+                  }
+                </List>
+              </Collapse>
+            </>
+          ))
+        }
+      </List>
+    </>
   )
 
   return (
-    <Box
-      component="nav"
-      sx={{ width: { sm: props.drawerWidth }, flexShrink: { sm: 0 } }}
-      aria-label="navigation"
-    >
+    <>
       <Drawer
         container={container}
         variant="temporary"
@@ -85,6 +88,6 @@ export const BlogNavbar = (props: {
       >
         {drawer}
       </Drawer>
-    </Box>
+    </>
   )
 }
