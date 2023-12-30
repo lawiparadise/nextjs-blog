@@ -1,24 +1,12 @@
 'use client'
 
-import { useRouter, usePathname } from 'next/navigation'
-import { useCallback, useContext, useEffect, useRef, useState } from "react"
-import Counter from '@/components/Counter.component'
-import { cookies } from 'next/headers'
-import { Box, IconButton, useTheme, AppBar, Toolbar, List, ListSubheader, ListItemButton, ListItemText, Drawer, Avatar, Divider, Link } from '@mui/material'
-import { ExpandLess, ExpandMore } from '@mui/icons-material'
-import Collapse from '@mui/material/Collapse'
-import Brightness4Icon from '@mui/icons-material/Brightness4'
-import Brightness7Icon from '@mui/icons-material/Brightness7'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from "react"
+import { Box, IconButton, AppBar, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import Typography from '@mui/material/Typography'
-import { BlogNavbar, ColorModeContext, CatESCAvatar } from '@/components'
-import NextLink from 'next/link'
+import { BlogNavbar } from '@/components'
 
-const name = 'devjune'
-
-function getFileNumFromPath(dictFileNames: {
-  [x: string]: string | any[];
-}, asPath: string) {
+function getFileNumFromPath(dictFileNames: { [x: string]: string | any[]}, asPath: string) {
   let a: number = 0
   let b: number = 0
   if (asPath.split('/')[1] == 'posts') {
@@ -34,11 +22,8 @@ function getFileNumFromPath(dictFileNames: {
 export default function BlogLayout({ children, dictFileNamesFromFolder, recentPostsData, window }: {
   children: React.ReactNode, dictFileNamesFromFolder: any, recentPostsData: any[], window?: () => Window
 }) {
-  // theme
-  const theme = useTheme()
-  const colorMode = useContext(ColorModeContext);
-
-  // files
+  
+  // posts
   const pathName = usePathname()
   const ab = getFileNumFromPath(dictFileNamesFromFolder, pathName)
   const [selected, setSelected] = useState(ab)
@@ -52,16 +37,14 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
 
   // responsive
   const [mobileOpen, setMobileOpen] = useState(false)
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen)
-  }
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen)
 
   // drawer
   const drawerWidth = 300
 
   return (
     <Box sx={{ display: 'flex' }}>
-      
+
       <Box component="nav"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="navigation"
@@ -109,7 +92,7 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
           </IconButton>
         </Toolbar>
       </AppBar>
+    
     </Box>
-
   )
 }

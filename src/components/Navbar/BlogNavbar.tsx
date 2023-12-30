@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from "react"
-import { List, ListItemButton, ListItemText, Drawer, Box, Link, useTheme } from '@mui/material'
+import { List, ListItemButton, ListItemText, Drawer, Link } from '@mui/material'
 import Collapse from '@mui/material/Collapse'
 import NextLink from 'next/link'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
@@ -40,7 +39,7 @@ export const BlogNavbar = (props: {
                 <List component="div" disablePadding>
                   {
                     dictFileNames[itemA].map((itemB: any, indexB: any) => (
-                      <Link href={`/posts/${itemA}/${itemB}`} component={NextLink} key={"b-" + itemB} color="inherit" >
+                      <Link scroll={false} href={`/posts/${itemA}/${itemB}`} component={NextLink} key={"b-" + itemB} color="inherit" >
                         <ListItemButton sx={{ mx: 2 }}
                           selected={(indexB == props.selected.b && indexA == props.selected.a)}
                           onClick={() => {
@@ -63,7 +62,7 @@ export const BlogNavbar = (props: {
 
   return (
     <>
-      <Drawer
+      <Drawer // mobile
         container={container}
         variant="temporary"
         open={props.mobileOpen}
@@ -78,7 +77,7 @@ export const BlogNavbar = (props: {
       >
         {drawer}
       </Drawer>
-      <Drawer
+      <Drawer // pc
         variant="permanent"
         sx={{
           display: { xs: 'none', sm: 'block' },
