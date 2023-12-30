@@ -55,7 +55,6 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
-  const container = window !== undefined ? () => window().document.body : undefined;
 
   // drawer
   const drawerWidth = 300
@@ -77,6 +76,8 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
             if (aList.indexOf(indexP) == -1) setAList([indexP, ...aList]);
             else setAList(aList.filter((v) => v != indexP));
           }}
+          mobileOpen={mobileOpen}
+          handleDrawerToggle={handleDrawerToggle}
         />
       </Box>
 

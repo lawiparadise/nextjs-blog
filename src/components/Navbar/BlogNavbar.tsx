@@ -13,13 +13,13 @@ export const BlogNavbar = (props: {
   drawerWidth: number
   selected: { a: unknown; b: any; }
   aList: number[]
-  setAList: (indexA: number) => void;
-  setAB: (arg0: { a: number; b: any; }) => void;
+  setAList: (indexA: number) => void
+  setAB: (arg0: { a: number; b: any; }) => void
+  mobileOpen: boolean
+  handleDrawerToggle: ()=> void
 }) => {
   const dictFileNames = props.dictFileNamesFromFolder
 
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const handleDrawerToggle = () => setMobileOpen(!mobileOpen)
   const { window } = props
   const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -29,14 +29,14 @@ export const BlogNavbar = (props: {
       <List>
         {
           Object.keys(dictFileNames).map((itemA, indexA) => (
-            <>
+            <div key={"a-"+itemA}>
               <ListItemButton
                 onClick={() => props.setAList(indexA)}
               >
                 <ListItemText primary={itemA} />
                 {props.aList.indexOf(indexA) != -1 ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={(props.aList.indexOf(indexA) != -1)} timeout="auto" unmountOnExit>
+              <Collapse key={"col-"+itemA} in={(props.aList.indexOf(indexA) != -1)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {
                     dictFileNames[itemA].map((itemB: any, indexB: any) => (
@@ -54,7 +54,7 @@ export const BlogNavbar = (props: {
                   }
                 </List>
               </Collapse>
-            </>
+            </div>
           ))
         }
       </List>
@@ -66,8 +66,8 @@ export const BlogNavbar = (props: {
       <Drawer
         container={container}
         variant="temporary"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
+        open={props.mobileOpen}
+        onClose={props.handleDrawerToggle}
         ModalProps={{
           keepMounted: true, // Better open performance on mobile.
         }}
