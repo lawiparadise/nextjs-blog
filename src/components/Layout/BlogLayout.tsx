@@ -39,7 +39,11 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
 }) {
   const theme = useTheme()
   const colorMode = useContext(ColorModeContext);
+  const pathName = usePathname()
 
+  const ab = getFileNumFromPath(dictFileNamesFromFolder, pathName)
+  const [selected, setSelected] = useState(ab)
+  const [aList, setAList] = useState<number[]>([ab.a])
 
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -55,20 +59,27 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  useEffect(() => {
+    // console.log('effect')
+    if (aList.indexOf(selected.a) == -1) {
+      setAList([selected.a, ...aList])
+    }
+  }, [ab])
+
   const drawerWidth = 300
   const drawer = (
     <>
       <Box sx={{ p: 3 }}>
         <Avatar
           src="/images/coding_cat.gif"
-          sx={{ m: 1, width: 144, height: 144, mx: "auto" }}
+          sx={{ mb: 2, width: 144, height: 144, mx: "auto" }}
         />
         <Link href="/" component={NextLink} key="key-title" color="inherit" >
           <Typography variant="h3" fontFamily="Consolas" align="center">
             {name}
           </Typography>
         </Link>
-        <p style={{ fontFamily: "Consolas", fontSize: "1.1em", marginLeft: 25, marginBottom: 0 }}>while:
+        <p style={{ fontFamily: "Consolas", fontSize: "1.1em", marginLeft: 25, marginTop: 5, marginBottom: 0 }}>while:
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? <Brightness4Icon /> : <Brightness7Icon />}
           </IconButton>
@@ -77,24 +88,32 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
           <span className="pointESC3" style={{ "backgroundSize": "17px" }}>S</span>leep&nbsp;
           <span className="pointESC3" style={{ "backgroundSize": "18px" }}>C</span>ode&nbsp;
         </p>
-
       </Box>
       {/* <Divider /> */}
       <List>
         {
           Object.keys(dictFileNamesFromFolder).map((itemA, indexA) => (
             <>
-              <ListItemButton>
+              <ListItemButton
+                onClick={() => setAList([indexA, ...aList])}
+              >
                 <ListItemText primary={itemA} />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                {aList.indexOf(indexA) != -1 ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse in={open} timeout="auto" unmountOnExit>
+              <Collapse in={(aList.indexOf(indexA) != -1)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {
                     dictFileNamesFromFolder[itemA].map((itemB: any, indexB: any) => (
-                      <ListItemButton sx={{ pl: 4 }}>
-                        <ListItemText primary={itemB} />
-                      </ListItemButton>
+                      <Link href={`/posts/${itemA}/${itemB}`} component={NextLink} key={"b-"+itemB} color="inherit" >
+                        <ListItemButton sx={{ mx: 2 }}
+                          selected={(indexB == selected.b && indexA == selected.a)}
+                          onClick={()=>{
+                            setSelected({a: indexA, b: indexB})
+                          }}
+                        >
+                          <ListItemText primary={itemB} />
+                        </ListItemButton>
+                      </Link>
                     ))
                   }
                 </List>
