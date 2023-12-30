@@ -33,6 +33,9 @@ const customTheme = (mode: PaletteMode) => ({
   palette: {
     mode,
   },
+  typography: {
+    fontFamily: "D2Coding, Consolas, monospace"
+  }
 })
 const theme = createTheme({
   palette: {

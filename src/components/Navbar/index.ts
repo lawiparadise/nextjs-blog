@@ -1,1 +1,2 @@
-export * from './BlogNavbar';
+export * from './BlogNavbarMantine'
+export * from './BlogNavbar'

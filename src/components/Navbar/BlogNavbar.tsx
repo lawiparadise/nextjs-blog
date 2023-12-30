@@ -1,64 +1,90 @@
 'use client'
 
-import { useRef } from 'react'
-import {
-  Navbar,
-  NavLink,
-  ScrollArea,
-} from '@mantine/core'
-import Link from 'next/link'
+import { useState } from "react"
+import { List, ListSubheader, ListItemButton, ListItemText, Drawer, Box } from '@mui/material'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import Collapse from '@mui/material/Collapse'
 
 export const BlogNavbar = (props: {
-  dictFileNamesFromFolder: any;
-  selected: { p: unknown; c: any; };
-  setPC: (arg0: { p: number; c: any; }) => void;
-  setPlist: (indexP: number) => void;
-  pList: number[];
+  window?: () => Window
+  dictFileNamesFromFolder: any
+  drawerWidth: number
 }) => {
-  const viewport = useRef<HTMLDivElement>(null);
-  const dictFileNames = props.dictFileNamesFromFolder;
+  const { window } = props
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-  const l = Object.keys(dictFileNames).length;
-  const scrollToCenter = (p: number) =>
-    viewport?.current?.scrollTo({
-      top: viewport.current.scrollHeight * p / l,
-      behavior: 'smooth',
-    });
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen)
+  }
+
+  const [open, setOpen] = useState(true);
+
+  const handleClick = () => {
+    setOpen(!open);
+  };
+
+  const dictFileNames = props.dictFileNamesFromFolder
+
+  const container = window !== undefined ? () => window().document.body : undefined;
+
+  const drawer = (
+    <List>
+      {
+        Object.keys(dictFileNames).map((itemA, indexA) => (
+          <>
+            <ListItemButton>
+              <ListItemText primary={itemA} />
+              {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                {
+                  dictFileNames[itemA].map((itemB: any, indexB: any) => (
+                    <ListItemButton sx={{ pl: 4 }}>
+                      <ListItemText primary={itemB} />
+                    </ListItemButton>
+                  ))
+                }
+              </List>
+            </Collapse>
+          </>
+        ))
+      }
+    </List>
+  )
 
   return (
-    <Navbar width={{ base: 250 }} p="md">
-      <ScrollArea type="never" viewportRef={viewport}>
-        {
-          Object.keys(dictFileNames).map((itemP, indexP) => (
-            <NavLink
-              childrenOffset={0}
-              opened={(props.pList.indexOf(indexP) != -1)}
-              // defaultOpened={(indexP === activeP)}
-              onClick={() => props.setPlist(indexP)}
-              key={'p-' + itemP}
-              label={itemP}
-            >
-              {
-                dictFileNames[itemP].map((itemC: any, indexC: any) => (
-                  <Link key={'c-' + itemC} href={`/mantine/posts/${itemP}/${itemC}`}>
-                    <NavLink
-                      px="xl"
-                      active={(indexC === props.selected.c && indexP === props.selected.p)}
-                      label={itemC}
-                      onClick={(v) => {
-                        // console.log(v?.body);
-                        props.setPC({ p: indexP, c: indexC });
-
-                        // scrollToCenter(indexP); 스크롤 이동은 일단 하지말자
-                      }}
-                    />
-                  </Link>
-                ))
-              }
-            </NavLink>
-          ))
-        }
-      </ScrollArea>
-    </Navbar>
+    <Box
+      component="nav"
+      sx={{ width: { sm: props.drawerWidth }, flexShrink: { sm: 0 } }}
+      aria-label="navigation"
+    >
+      <Drawer
+        container={container}
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        ModalProps={{
+          keepMounted: true, // Better open performance on mobile.
+        }}
+        sx={{
+          display: { xs: 'block', sm: 'none' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
+        }}
+      >
+        {drawer}
+      </Drawer>
+      <Drawer
+        variant="permanent"
+        sx={{
+          display: { xs: 'none', sm: 'block' },
+          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: props.drawerWidth },
+        }}
+        open
+      >
+        {drawer}
+      </Drawer>
+    </Box>
   )
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import ThemeProvider from '@/components/Theme/MuiTheme'
 import BlogLayout from '@/components/Layout/BlogLayout'
 import { getDictFileNamesFromFolder, getRecentPosts } from '@/lib/posts'
-import ThemeProvider from '@/components/Theme/MuiTheme'
 import { cookies } from 'next/headers'
 
 export const metadata: Metadata = {
@@ -25,6 +25,5 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
         {children}
       </BlogLayout>
     </ThemeProvider>
-
   )
 }

@@ -3,7 +3,7 @@
 import {
   AppShell,
 } from "@mantine/core";
-import { BlogNavbar } from "../Navbar"
+import { BlogNavbarMantine } from "../Navbar"
 import { BlogHeader } from "../Header"
 import { useRouter, usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from "react"
@@ -67,7 +67,7 @@ export default function BlogLayout({
     <AppShell
       padding="md"
       navbar={
-        <BlogNavbar
+        <BlogNavbarMantine
           dictFileNamesFromFolder={data}
           selected={selected}
           setPC={(v: { p: number; c: number; }) => setSelected(v)}
