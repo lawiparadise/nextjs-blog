@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useCallback, useContext, useEffect, useRef, useState } from "react"
 import Counter from '@/components/Counter.component'
 import { cookies } from 'next/headers'
-import { Box, IconButton, useTheme, AppBar, Toolbar, List, ListSubheader, ListItemButton, ListItemText, Drawer, Avatar } from '@mui/material'
+import { Box, IconButton, useTheme, AppBar, Toolbar, List, ListSubheader, ListItemButton, ListItemText, Drawer, Avatar, Divider } from '@mui/material'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import Collapse from '@mui/material/Collapse'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
@@ -65,17 +65,18 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
         <Typography variant="h3" fontFamily="Consolas" align="center">
           {name}
         </Typography>
-        <p style={{ fontFamily: "Consolas", marginLeft: 25, marginBottom: 0 }}>while:
+        <p style={{ fontFamily: "Consolas", fontSize:"1.1em", marginLeft: 25, marginBottom: 0 }}>while:
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? <Brightness4Icon /> : <Brightness7Icon />}
           </IconButton>
           <span>&nbsp;</span>
-          <span className="pointESC" style={{ "backgroundSize": "40px" }}>E</span>at&nbsp;
-          <span className="pointESC" style={{ "backgroundSize": "40px" }}>S</span>leep&nbsp;
-          <span className="pointESC" style={{ "backgroundSize": "40px" }}>C</span>ode&nbsp;
+          <span className="pointESC3" style={{ "backgroundSize": "16px" }}>E</span>at&nbsp;
+          <span className="pointESC3" style={{ "backgroundSize": "17px" }}>S</span>leep&nbsp;
+          <span className="pointESC3" style={{ "backgroundSize": "18px" }}>C</span>ode&nbsp;
         </p>
 
       </Box>
+      {/* <Divider /> */}
       <List>
         {
           Object.keys(dictFileNamesFromFolder).map((itemA, indexA) => (
