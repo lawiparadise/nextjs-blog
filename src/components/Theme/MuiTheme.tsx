@@ -37,6 +37,7 @@ const customTheme = (mode: PaletteMode) => ({
     fontFamily: "D2Coding, Consolas, monospace"
   }
 })
+
 const theme = createTheme({
   palette: {
     mode: 'dark',
@@ -106,8 +107,8 @@ export default function ThemeProvider({ children, theme }: { children: React.Rea
       fetch('/cookie', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
-      }).then(()=>{
-        setMode((prevState)=> (prevState === 'light' ? 'dark' : 'light'))
+      }).then(() => {
+        setMode((prevState) => (prevState === 'light' ? 'dark' : 'light'))
       })
 
 

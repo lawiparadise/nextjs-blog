@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { useCallback, useContext, useEffect, useRef, useState } from "react"
 import Counter from '@/components/Counter.component'
 import { cookies } from 'next/headers'
-import { Box, IconButton, useTheme, AppBar, Toolbar, List, ListSubheader, ListItemButton, ListItemText, Drawer, Avatar, Divider } from '@mui/material'
+import { Box, IconButton, useTheme, AppBar, Toolbar, List, ListSubheader, ListItemButton, ListItemText, Drawer, Avatar, Divider, Link } from '@mui/material'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import Collapse from '@mui/material/Collapse'
 import Brightness4Icon from '@mui/icons-material/Brightness4'
@@ -12,25 +12,26 @@ import Brightness7Icon from '@mui/icons-material/Brightness7'
 import MenuIcon from '@mui/icons-material/Menu'
 import Typography from '@mui/material/Typography'
 import { ColorModeContext } from '@/components'
+import NextLink from 'next/link'
 
 const name = 'devjune'
 
 function getFileNumFromPath(dictFileNames: {
   [x: string]: string | any[];
 }, asPath: string) {
-  let p: number = 0
-  let c: number = 0
+  let a: number = 0
+  let b: number = 0
   if (asPath.split('/')[2] == 'posts') { // posts로 접근했을 때만 가능하게하기
     const folderName = asPath.split('/')[3]
     const fileName = asPath.split('/')[4]
     // console.log(folderName, fileName)
-    p = Object.keys(dictFileNames).indexOf(folderName)
-    if (p === undefined) p = 0
+    a = Object.keys(dictFileNames).indexOf(folderName)
+    if (a === undefined) a = 0
     // console.log(p)
-    c = dictFileNames[folderName].indexOf(fileName)
+    b = dictFileNames[folderName].indexOf(fileName)
     // console.log(c)
   }
-  return { p, c }
+  return { a, b }
 }
 
 export default function BlogLayout({ children, dictFileNamesFromFolder, recentPostsData, window }: {
@@ -62,10 +63,12 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
           src="/images/coding_cat.gif"
           sx={{ m: 1, width: 144, height: 144, mx: "auto" }}
         />
-        <Typography variant="h3" fontFamily="Consolas" align="center">
-          {name}
-        </Typography>
-        <p style={{ fontFamily: "Consolas", fontSize:"1.1em", marginLeft: 25, marginBottom: 0 }}>while:
+        <Link href="/" component={NextLink} key="key-title" color="inherit" >
+          <Typography variant="h3" fontFamily="Consolas" align="center">
+            {name}
+          </Typography>
+        </Link>
+        <p style={{ fontFamily: "Consolas", fontSize: "1.1em", marginLeft: 25, marginBottom: 0 }}>while:
           <IconButton onClick={colorMode.toggleColorMode} color="inherit">
             {theme.palette.mode === 'dark' ? <Brightness4Icon /> : <Brightness7Icon />}
           </IconButton>
@@ -139,10 +142,10 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
       {/* <BlogNavbar dictFileNamesFromFolder={dictFileNamesFromFolder} drawerWidth={drawerWidth} /> */}
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, mb: 6, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
-        <Toolbar />
         {children}
+        <Toolbar />
       </Box>
       {/* <main>{children}</main> */}
       <AppBar
