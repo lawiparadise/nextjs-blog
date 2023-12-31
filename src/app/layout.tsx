@@ -1,7 +1,5 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import ContextProvider from '@/Context/ContextProvider'
-import { CounterContextProvider } from '@/Context/Counter.context'
 
 export const metadata: Metadata = {
   title: 'home',
@@ -12,9 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <CounterContextProvider>
-          {children}
-        </CounterContextProvider>
+        {children}
       </body>
     </html>
   )

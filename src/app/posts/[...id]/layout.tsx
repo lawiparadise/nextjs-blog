@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ThemeProvider from '@/components/Theme/MuiTheme'
+import MuiThemeProvider from '@/components/Theme/MuiThemeProvider'
 import BlogLayout from '@/components/Layout/BlogLayout'
 import { getDictFileNamesFromFolder, getRecentPosts } from '@/lib/posts'
 import { cookies } from 'next/headers'
@@ -17,13 +17,13 @@ export default function PostLayout({ children }: { children: React.ReactNode }) 
   const theme = cookieStore.get('theme')?.value
 
   return (
-    <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
       <BlogLayout
         dictFileNamesFromFolder={dictFileNamesFromFolder}
         recentPostsData={recentPostsData}
       >
         {children}
       </BlogLayout>
-    </ThemeProvider>
+    </MuiThemeProvider>
   )
 }
