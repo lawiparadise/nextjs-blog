@@ -1,6 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Providers } from '@/lib/providers'
+import { ReduxProvider } from '@/lib/redux/ReduxProvider'
+import { cookies } from 'next/headers'
+import MuiThemeProvider from '@/components/Theme/MuiThemeProvider'
 
 export const metadata: Metadata = {
   title: 'home',
@@ -8,13 +10,18 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = cookies()
+  const theme = cookieStore.get('theme')?.value
+
   return (
-    <html lang="en">
+    <html lang="ko">
       <body>
-        <Providers>
-          {children}
-        </Providers>
+        <ReduxProvider>
+          <MuiThemeProvider theme={theme}>
+            {children}
+          </MuiThemeProvider>
+        </ReduxProvider>
       </body>
-    </html>
+    </html >
   )
 }

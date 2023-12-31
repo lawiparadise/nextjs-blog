@@ -6,7 +6,7 @@ import NextLink from 'next/link'
 import { ExpandLess, ExpandMore } from '@mui/icons-material'
 import { CatESCAvatar } from "@/components"
 
-export const BlogNavbar = (props: {
+export default function BlogNavbar(props: {
   window?: () => Window
   dictFileNamesFromFolder: any
   drawerWidth: number
@@ -15,8 +15,8 @@ export const BlogNavbar = (props: {
   setAList: (indexA: number) => void
   setAB: (arg0: { a: number; b: any; }) => void
   mobileOpen: boolean
-  handleDrawerToggle: ()=> void
-}) => {
+  handleDrawerToggle: () => void
+}) {
   const dictFileNames = props.dictFileNamesFromFolder
 
   const { window } = props
@@ -28,18 +28,18 @@ export const BlogNavbar = (props: {
       <List>
         {
           Object.keys(dictFileNames).map((itemA, indexA) => (
-            <div key={"a-"+itemA}>
+            <div key={"a-" + itemA}>
               <ListItemButton
                 onClick={() => props.setAList(indexA)}
               >
                 <ListItemText primary={itemA} />
                 {props.aList.indexOf(indexA) != -1 ? <ExpandLess /> : <ExpandMore />}
               </ListItemButton>
-              <Collapse key={"col-"+itemA} in={(props.aList.indexOf(indexA) != -1)} timeout="auto" unmountOnExit>
+              <Collapse key={"col-" + itemA} in={(props.aList.indexOf(indexA) != -1)} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {
                     dictFileNames[itemA].map((itemB: any, indexB: any) => (
-                      <Link scroll={false} href={`/posts/${itemA}/${itemB}`} component={NextLink} key={"b-" + itemB} color="inherit" >
+                      <Link href={`/posts/${itemA}/${itemB}`} component={NextLink} key={"b-" + itemB} color="inherit" >
                         <ListItemButton sx={{ mx: 2 }}
                           selected={(indexB == props.selected.b && indexA == props.selected.a)}
                           onClick={() => {

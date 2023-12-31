@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from "react"
 import { Box, IconButton, AppBar, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import { BlogNavbar } from '@/components'
+import BlogNavbar from '@/components/Navbar/BlogNavbar'
 
 function getFileNumFromPath(dictFileNames: { [x: string]: string | any[]}, asPath: string) {
   let a: number = 0
@@ -28,12 +28,6 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
   const ab = getFileNumFromPath(dictFileNamesFromFolder, pathName)
   const [selected, setSelected] = useState(ab)
   const [aList, setAList] = useState<number[]>([ab.a])
-  useEffect(() => {
-    // console.log('effect')
-    if (aList.indexOf(selected.a) == -1) {
-      setAList([selected.a, ...aList])
-    }
-  }, [ab])
 
   // responsive
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -65,7 +59,7 @@ export default function BlogLayout({ children, dictFileNamesFromFolder, recentPo
       </Box>
 
       <Box component="main"
-        sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+        sx={{ flexGrow: 1, p: 3, mt: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         {children}
         <Toolbar />
