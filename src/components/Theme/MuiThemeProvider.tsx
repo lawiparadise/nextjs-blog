@@ -87,7 +87,7 @@ export default function MuiThemeProvider({ children, theme }: { children: React.
 
   const colorMode = useMemo(() => ({
     toggleColorMode: () => {
-      fetch('/cookie', {
+      fetch('/api/theme', {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       }).then(() => {
