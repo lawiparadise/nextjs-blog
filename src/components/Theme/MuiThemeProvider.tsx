@@ -103,7 +103,7 @@ export default function MuiThemeProvider({ children, theme }: { children: React.
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={toggleTheme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme/>
         {children}
       </ThemeProvider>
     </ColorModeContext.Provider>
