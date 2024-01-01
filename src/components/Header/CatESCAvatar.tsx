@@ -17,7 +17,7 @@ export const CatESCAvatar = () => {
 				src="/images/coding_cat.gif"
 				sx={{ mb: 2, width: 144, height: 144, mx: "auto" }}
 			/>
-			<Link href="/" component={NextLink} key="key-title" color="inherit" >
+			<Link href="/posts/june" component={NextLink} key="key-title" color="inherit" >
 				<Typography variant="h3" fontFamily="Consolas" align="center">
 					{title}
 				</Typography>

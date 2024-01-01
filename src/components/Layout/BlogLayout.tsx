@@ -7,11 +7,13 @@ import MenuIcon from '@mui/icons-material/Menu'
 import BlogNavbar from '@/components/Navbar/BlogNavbar'
 
 function getFileNumFromPath(dictFileNames: { [x: string]: string | any[]}, asPath: string) {
-  let a: number = 0
-  let b: number = 0
-  if (asPath.split('/')[1] == 'posts') {
-    const folderName = asPath.split('/')[2]
-    const fileName = asPath.split('/')[3]
+  let a: number = -1
+  let b: number = -1
+  const p = asPath.split('/')
+  
+  if (p[1] == 'posts' && p[2] != 'june') {
+    const folderName = p[2]
+    const fileName = p[3]
     a = Object.keys(dictFileNames).indexOf(folderName)
     if (a === undefined) a = 0
     b = dictFileNames[folderName].indexOf(fileName)
