@@ -8,10 +8,10 @@ const title = process.env.NEXT_PUBLIC_BLOG_TITLE
 
 export const metadata: Metadata = {
   title: title,
-  description: title+"dd",
+  description: title,
   openGraph: {
     title: title,
-    description: "hi there",
+    description: "good developer june's blog",
   },
 }
 
