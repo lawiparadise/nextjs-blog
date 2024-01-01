@@ -1,6 +1,6 @@
 'use client'
 
-import { createTheme, PaletteMode } from '@mui/material'
+import { createTheme, darkScrollbar, PaletteMode } from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider } from '@mui/material'
 import React, { createContext, useMemo } from 'react'
@@ -19,42 +19,25 @@ const customTheme = (mode: PaletteMode) => ({
   typography: {
     fontFamily: "D2Coding, Consolas, monospace"
   },
-  overrides: {
+  components: {
     MuiCssBaseline: {
-      '@global': {
-        '*': {
-          scrollbarWidth: 'thin',
-          scrollbarColor: '#B7B7B7 transparent',
-          '&::-webkit-scrollbar': {
-            width: 6,
-            height: 6,
-            backgroundColor: 'transparent',
-          },
-          '&::-webkit-scrollbar-track': {
-            backgroundColor: 'transparent',
-          },
-          '&::-webkit-scrollbar-thumb': {
-            borderRadius: 6,
-            backgroundColor: '#B7B7B7',
-            minHeight: 24,
-            minWidth: 24,
-          },
-          '&::-webkit-scrollbar-thumb:focus': {
-            backgroundColor: '#adadad',
-          },
-          '&::-webkit-scrollbar-thumb:active': {
-            backgroundColor: '#adadad',
-          },
-          '&::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: '#adadad',
-          },
-          '&::-webkit-scrollbar-corner': {
-            backgroundColor: 'transparent',
-          },
-        },
-      },
-    },
-  },
+      styleOverrides: {
+        html: {
+          ...darkScrollbar(
+            mode === "light"
+              ? {
+                  track: grey[200],
+                  thumb: grey[400],
+                  active: grey[400]
+                }
+              : undefined
+          ),
+          //scrollbarWidth for Firefox
+          scrollbarWidth: "thin"
+        }
+      }
+    }
+  }
 })
 
 const theme = createTheme({
