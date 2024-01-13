@@ -3,7 +3,7 @@
 import { createTheme, PaletteMode } from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider } from '@mui/material'
-import React, { createContext, useEffect, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo, useState } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
 
 // https://mui.com/material-ui/customization/dark-mode/
@@ -47,26 +47,27 @@ function myScrollbar(mode: PaletteMode) {
   return {
     scrollbarWidth: 'thin',
     scrollbarColor: `${scrollBar.thumb} ${scrollBar.track}`,
-    'body::-webkit-scrollbar': {
+    'body::-webkit-scrollbar, body *::-webkit-scrollbar': {
       width: '14px',
+      height: '14px',
       backgroundColor: scrollBar.track
     },
-    'body::-webkit-scrollbar-thumb': {
+    'body::-webkit-scrollbar-thumb, body *::-webkit-scrollbar-thumb': {
       borderRadius: 8,
       backgroundColor: scrollBar.thumb,
       minHeight: 24,
       border: `3px solid ${scrollBar.track}`
     },
-    'body::-webkit-scrollbar-thumb:focus': {
+    'body::-webkit-scrollbar-thumb:focus, body *::-webkit-scrollbar-thumb:focus': {
       backgroundColor: scrollBar.active
     },
-    'body::-webkit-scrollbar-thumb:active': {
+    'body::-webkit-scrollbar-thumb:active, body *::-webkit-scrollbar-thumb:active': {
       backgroundColor: scrollBar.active
     },
-    'body::-webkit-scrollbar-thumb:hover': {
+    'body::-webkit-scrollbar-thumb:hover, body *::-webkit-scrollbar-thumb:hover': {
       backgroundColor: scrollBar.active
     },
-    'body::-webkit-scrollbar-corner': {
+    'body::-webkit-scrollbar-corner, body *::-webkit-scrollbar-corner': {
       backgroundColor: scrollBar.track
     },
 
@@ -105,8 +106,15 @@ export default function MuiThemeProvider({ children, theme }: { children: React.
     },
   }), [])
 
-  const mac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
-  const toggleTheme = useMemo(() => createTheme(customTheme(mode, mac)), [mode])
+  const [mac, setMac] = useState(false)
+  useEffect(() => {
+    if(typeof window !== 'undefined'){
+      setMac(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform))
+      // console.log(typeof window, mac)
+    }
+  }, [mac]);
+  // const toggleTheme = useMemo(()=> createTheme(customTheme(mode, mac)), [mode]) // 이거 하면 mac으로 적용 안 됨
+  const toggleTheme = createTheme(customTheme(mode, mac))
 
   return (
     <ColorModeContext.Provider value={colorMode}>
