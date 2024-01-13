@@ -6,12 +6,8 @@ import { useState } from "react";
 export default function Me() {
   return (
     <>
-      <Typography variant="h4">welcome to developer's blog🍺</Typography>
+      <Typography variant="h4">welcome to devjune's blog🍺</Typography>
       <br />
-      <Typography>
-        <span>Hi I'm </span><span className="pointESC3" style={{ "backgroundSize": "16px" }}>g</span><span>ood</span>
-        <span className="pointESC3" style={{ "backgroundSize": "16px" }}> d</span>eveloper june:D
-      </Typography>
       <Typography>안녕하세요! 개발자 이상준입니다.</Typography>
       <br />
 
