@@ -1,9 +1,9 @@
 'use client'
 
-import { createTheme, darkScrollbar, PaletteMode } from '@mui/material'
+import { createTheme, PaletteMode } from '@mui/material'
 import { orange, amber, grey, deepOrange } from '@mui/material/colors'
 import { ThemeProvider } from '@mui/material'
-import React, { createContext, useMemo } from 'react'
+import React, { createContext, useEffect, useMemo } from 'react'
 import CssBaseline from '@mui/material/CssBaseline';
 
 // https://mui.com/material-ui/customization/dark-mode/
@@ -12,7 +12,7 @@ export const ColorModeContext = createContext({
   },
 })
 
-const customTheme = (mode: PaletteMode) => ({
+const customTheme = (mode: PaletteMode, mac: Boolean) => ({
   palette: {
     mode,
   },
@@ -21,85 +21,75 @@ const customTheme = (mode: PaletteMode) => ({
   },
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        html: {
-          ...darkScrollbar(
-            mode === "light"
-              ? {
-                  track: grey[200],
-                  thumb: grey[400],
-                  active: grey[400]
-                }
-              : undefined
-          ),
-          //scrollbarWidth for Firefox
-          scrollbarWidth: "thin"
+      ...(mac ? {} : {
+          styleOverrides: {
+            '*': myScrollbar(mode)
+          }
         }
-      }
-    }
-  }
+      )
+    },
+  },
 })
 
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    // primary: {
-    //   main: orange[500],
-    // },
-    primary: {
-      light: '#757ce8',
-      main: '#3f50b5',
-      dark: '#002884',
-      contrastText: '#fff',
+function myScrollbar(mode: PaletteMode) {
+  const scrollBar = {
+    track: "#121212", //'#2b2b2b',
+    thumb: '#6b6b6b',
+    active: '#959595'
+  }
+
+  if (mode === "light") {
+    scrollBar.track = grey[200]
+    scrollBar.thumb = grey[400]
+    scrollBar.active = grey[600]
+  }
+
+  return {
+    scrollbarWidth: 'thin',
+    scrollbarColor: `${scrollBar.thumb} ${scrollBar.track}`,
+    'body::-webkit-scrollbar': {
+      width: '14px',
+      backgroundColor: scrollBar.track
     },
-    secondary: {
-      light: '#ff7961',
-      main: '#f44336',
-      dark: '#ba000d',
-      contrastText: '#000',
+    'body::-webkit-scrollbar-thumb': {
+      borderRadius: 8,
+      backgroundColor: scrollBar.thumb,
+      minHeight: 24,
+      border: `3px solid ${scrollBar.track}`
     },
-  },
-  // components: {
-  //   MuiButton: {
-  //     styleOverrides: {
-  //       root: {
-  //         fontSize: '1rem'
-  //       },
-  //     },
-  //   },
-  // },
-  // status: {
-  //   danger: orange[500],
-  // },
-})
-const getDesignTokens = (mode: PaletteMode) => ({
-  palette: {
-    mode,
-    ...(mode === 'light'
-      ? {
-        // palette values for light mode
-        primary: amber,
-        divider: amber[200],
-        text: {
-          primary: grey[900],
-          secondary: grey[800],
-        },
-      }
-      : {
-        // palette values for dark mode
-        primary: deepOrange,
-        divider: deepOrange[700],
-        background: {
-          default: deepOrange[900],
-          paper: deepOrange[900],
-        },
-        text: {
-          primary: '#fff',
-          secondary: grey[500],
-        },
-      }),
-  },
-})
+    'body::-webkit-scrollbar-thumb:focus': {
+      backgroundColor: scrollBar.active
+    },
+    'body::-webkit-scrollbar-thumb:active': {
+      backgroundColor: scrollBar.active
+    },
+    'body::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: scrollBar.active
+    },
+    'body::-webkit-scrollbar-corner': {
+      backgroundColor: scrollBar.track
+    },
+
+    'nav::-webkit-scrollbar, nav *::-webkit-scrollbar': {
+      backgroundColor: 'transparent',
+    },
+    'nav::-webkit-scrollbar-thumb, nav *::-webkit-scrollbar-thumb': {
+      backgroundColor: 'transparent',
+    },
+    'nav::-webkit-scrollbar-thumb:focus, nav *::-webkit-scrollbar-thumb:focus': {
+      backgroundColor: 'transparent',
+    },
+    'nav::-webkit-scrollbar-thumb:active, nav *::-webkit-scrollbar-thumb:active': {
+      backgroundColor: 'transparent',
+    },
+    'nav::-webkit-scrollbar-thumb:hover, nav *::-webkit-scrollbar-thumb:hover': {
+      backgroundColor: 'transparent',
+    },
+    'nav::-webkit-scrollbar-corner, nav *::-webkit-scrollbar-corner': {
+      backgroundColor: 'transparent',
+    },
+  };
+}
 
 export default function MuiThemeProvider({ children, theme }: { children: React.ReactNode, theme: any }) {
   const [mode, setMode] = React.useState<'light' | 'dark'>(theme ?? 'dark');
@@ -112,17 +102,16 @@ export default function MuiThemeProvider({ children, theme }: { children: React.
       }).then(() => {
         setMode((prevState) => (prevState === 'light' ? 'dark' : 'light'))
       })
-
-
     },
   }), [])
 
-  const toggleTheme = useMemo(() => createTheme(customTheme(mode)), [mode])
+  const mac = /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)
+  const toggleTheme = useMemo(() => createTheme(customTheme(mode, mac)), [mode])
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={toggleTheme}>
-        <CssBaseline enableColorScheme/>
+        <CssBaseline enableColorScheme />
         {children}
       </ThemeProvider>
     </ColorModeContext.Provider>
