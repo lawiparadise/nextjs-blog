@@ -76,6 +76,7 @@ function myScrollbar(mode: PaletteMode) {
     },
     'nav::-webkit-scrollbar-thumb, nav *::-webkit-scrollbar-thumb': {
       backgroundColor: 'transparent',
+      border: `0px solid`
     },
     'nav::-webkit-scrollbar-thumb:focus, nav *::-webkit-scrollbar-thumb:focus': {
       backgroundColor: 'transparent',
