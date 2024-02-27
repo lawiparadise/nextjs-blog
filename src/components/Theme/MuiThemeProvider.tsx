@@ -22,9 +22,7 @@ const customTheme = (mode: PaletteMode, mac: Boolean) => ({
   components: {
     MuiCssBaseline: {
       ...(mac ? {} : {
-          styleOverrides: {
-            '*': myScrollbar(mode)
-          }
+          styleOverrides: myScrollbar(mode)
         }
       )
     },
@@ -39,58 +37,25 @@ function myScrollbar(mode: PaletteMode) {
   }
 
   if (mode === "light") {
-    scrollBar.track = grey[200]
+    scrollBar.track = '#ffffff'
     scrollBar.thumb = grey[400]
     scrollBar.active = grey[600]
   }
 
   return {
-    scrollbarWidth: 'thin',
-    scrollbarColor: `${scrollBar.thumb} ${scrollBar.track}`,
-    'body::-webkit-scrollbar, body *::-webkit-scrollbar': {
-      width: '14px',
-      height: '14px',
+    '*::-webkit-scrollbar': {
+      width: '8px',
+      height: '8px',
       backgroundColor: scrollBar.track
     },
-    'body::-webkit-scrollbar-thumb, body *::-webkit-scrollbar-thumb': {
+    '*::-webkit-scrollbar-thumb': {
       borderRadius: 8,
-      backgroundColor: scrollBar.thumb,
-      minHeight: 24,
-      border: `3px solid ${scrollBar.track}`
+      backgroundColor: scrollBar.thumb
     },
-    'body::-webkit-scrollbar-thumb:focus, body *::-webkit-scrollbar-thumb:focus': {
-      backgroundColor: scrollBar.active
-    },
-    'body::-webkit-scrollbar-thumb:active, body *::-webkit-scrollbar-thumb:active': {
-      backgroundColor: scrollBar.active
-    },
-    'body::-webkit-scrollbar-thumb:hover, body *::-webkit-scrollbar-thumb:hover': {
-      backgroundColor: scrollBar.active
-    },
-    'body::-webkit-scrollbar-corner, body *::-webkit-scrollbar-corner': {
+    'nav *::-webkit-scrollbar-thumb': {
       backgroundColor: scrollBar.track
-    },
-
-    'nav::-webkit-scrollbar, nav *::-webkit-scrollbar': {
-      backgroundColor: 'transparent',
-    },
-    'nav::-webkit-scrollbar-thumb, nav *::-webkit-scrollbar-thumb': {
-      backgroundColor: 'transparent',
-      border: `0px solid`
-    },
-    'nav::-webkit-scrollbar-thumb:focus, nav *::-webkit-scrollbar-thumb:focus': {
-      backgroundColor: 'transparent',
-    },
-    'nav::-webkit-scrollbar-thumb:active, nav *::-webkit-scrollbar-thumb:active': {
-      backgroundColor: 'transparent',
-    },
-    'nav::-webkit-scrollbar-thumb:hover, nav *::-webkit-scrollbar-thumb:hover': {
-      backgroundColor: 'transparent',
-    },
-    'nav::-webkit-scrollbar-corner, nav *::-webkit-scrollbar-corner': {
-      backgroundColor: 'transparent',
-    },
-  };
+    }
+  }
 }
 
 export default function MuiThemeProvider({ children, theme }: { children: React.ReactNode, theme: any }) {
