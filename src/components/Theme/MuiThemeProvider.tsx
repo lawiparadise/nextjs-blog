@@ -44,13 +44,13 @@ function myScrollbar(mode: PaletteMode) {
 
   return {
     '*::-webkit-scrollbar': {
-      width: '18px',
-      height: '18px',
+      width: '16px',
+      height: '16px',
       backgroundColor: scrollBar.track
     },
     '*::-webkit-scrollbar-thumb': {
       borderRadius: 8,
-      border: `5px solid ${scrollBar.track}`,
+      border: `4px solid ${scrollBar.track}`,
       backgroundColor: scrollBar.thumb,
       minHeight: '100px'
     },
